@@ -3,8 +3,8 @@ import { ZodPipe } from "../../../../zod.pipe.js"
 import { CreateTodoUseCase } from "../../../core/application/use-cases/create-todo/create-todo.use-case.js"
 import { ListTodosUseCase } from "../../../core/application/use-cases/list-todos/list-todos.use-case.js"
 import { TodoMapper } from "../../../mapper/todo.mapper.js"
-import { type CreateTodoDto, CreateTodoDtoSchema } from "../dto/create-todo.dto.js"
-import type { TodoDto } from "../dto/todo.dto.js"
+import { type CreateTodoDto, CreateTodoDtoSchema } from "./dto/input/create-todo.dto.js"
+import type { TodoDto } from "./dto/output/todo.dto.js"
 
 @Controller("todos")
 export class TodoController {

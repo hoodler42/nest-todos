@@ -2,7 +2,8 @@ import { Injectable } from "@nestjs/common"
 import type { Mapper } from "../../lib/mapper.js"
 import { Todo, type TodoProps } from "../core/domain/entities/todo.js"
 import type { TodoTypeOrm } from "../infrastructure/database/entities/todo.typeorm.js"
-import type { TodoDto } from "../interface/http/dto/todo.dto.js"
+import type { TodoGraphql } from "../interface/http/graphql/entities/todo.graphql.js"
+import type { TodoDto } from "../interface/http/rest/dto/output/todo.dto.js"
 
 @Injectable()
 export class TodoMapper implements Mapper<TodoProps> {
@@ -35,6 +36,14 @@ export class TodoMapper implements Mapper<TodoProps> {
   }
 
   toDTOFromDomain(todoDomain: Todo): TodoDto {
+    return {
+      id: todoDomain.id,
+      title: todoDomain.title,
+      isCompleted: todoDomain.isCompleted,
+    }
+  }
+
+  toGQLFromDomain(todoDomain: Todo): TodoGraphql {
     return {
       id: todoDomain.id,
       title: todoDomain.title,
