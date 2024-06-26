@@ -1,7 +1,7 @@
 import { Before, Given, Then, When } from "@cucumber/cucumber"
 import { expect } from "earl"
 import { v4 as uuid } from "uuid"
-import { TodoTypeOrm } from "../../src/todo/infrastructure/database/entities/todo.typeorm.js"
+import { TodoTypeOrm } from "../../src/services/todo/infrastructure/database/entities/todo.typeorm.js"
 import type { CustomWorld } from "../global.steps.js"
 
 let existingTodos: TodoTypeOrm[]

@@ -1,0 +1,9 @@
+type Query {
+  getTodos: [TodoGraphql!]!
+}
+
+type TodoGraphql {
+  id: String!
+  isCompleted: Boolean!
+  title: String!
+}

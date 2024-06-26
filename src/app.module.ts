@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common"
 import { ConfigModule } from "@nestjs/config"
 import { validateConfig } from "./env.validation.js"
-import { TodoInfrastructureModule } from "./todo/infrastructure/todo.infrastructure.module.js"
-import { TodoInterfaceModule } from "./todo/interface/todo.interface.module.js"
+import { TodoInfrastructureModule } from "./services/todo/infrastructure/todo.infrastructure.module.js"
+import { TodoInterfaceModule } from "./services/todo/interface/todo.interface.module.js"
 
 @Module({
   imports: [

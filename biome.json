@@ -30,11 +30,13 @@
     "rules": {
       "all": true,
       "complexity": {
+        "noVoid": "off",
         "useArrowFunction": "off"
       },
       "correctness": {
         "noNodejsModules": "off",
-        "noUnusedVariables": "off"
+        "noUnusedVariables": "off",
+        "useHookAtTopLevel": "off"
       },
       "style": {
         "noDefaultExport": "off",

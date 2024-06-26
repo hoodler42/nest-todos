@@ -6,16 +6,21 @@
   "main": "dist/main.js",
   "type": "module",
   "scripts": {
-    "build": "nest build",
-    "start": "nest start",
-    "start:dev": "NODE_ENV=dev nest start --watch",
-    "start:debug": "NODE_ENV=dev nest start --debug --watch",
-    "start:prod": "NODE_ENV=prod node dist/main",
-    "test": "NODE_ENV=test vitest run",
-    "test:watch": "NODE_ENV=test vitest",
-    "test:cov": "NODE_ENV=test vitest run --coverage",
-    "test:debug": "NODE_ENV=test vitest --inspect-brk --inspect --logHeapUsage --threads=false",
-    "test:e2e": "NODE_ENV=test npx cucumber-js",
+    "clean": "rm -rf dist",
+
+    "build": "yarn clean && nest build && yarn generate-sdl",
+
+    "generate-sdl": "node dist/tools/SDLBuilder.js",
+
+    "test": "yarn build && NODE_ENV=test vitest run",
+    "test:watch": "yarn build && NODE_ENV=test vitest",
+    "test:debug": "yarn build && NODE_ENV=test vitest --inspect-brk --inspect --logHeapUsage --threads=false",
+    "test:e2e": "yarn build && NODE_ENV=test yarn exec cucumber-js",
+
+    "start": "yarn build && NODE_ENV=dev node dist/main --watch",
+    "start:debug": "yarn build && NODE_ENV=dev node dist/main --debug --watch",
+    "start:prod": "yarn build && NODE_ENV=prod node dist/main",
+
     "migration:generate": "typeorm-ts-node-esm migration:generate ./src/todo/infrastructure/database/postgres/migrations/$MIGRATION_NAME -d ./src/todo/infrastructure/database/postgres/datasource.ts",
     "migration:show": "typeorm-ts-node-esm migration:show -d ./src/todo/infrastructure/database/postgres/datasource.ts",
     "migration:run": "typeorm-ts-node-esm migration:run -d ./src/todo/infrastructure/database/postgres/datasource.ts"

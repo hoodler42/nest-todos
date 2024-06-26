@@ -3,12 +3,10 @@
     <package-json value="$PROJECT_DIR$/package.json" />
     <command value="run" />
     <scripts>
-      <script value="start:dev" />
+      <script value="start:debug" />
     </scripts>
     <node-interpreter value="project" />
-    <envs>
-      <env name="NODE_ENV" value="dev" />
-    </envs>
+    <envs />
     <method v="2" />
   </configuration>
 </component>

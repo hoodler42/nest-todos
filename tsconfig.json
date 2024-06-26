@@ -1,77 +1,75 @@
 {
-	"ts-node": {
-		"swc": true
-	},
-	"compilerOptions": {
-		// Type Checking
-		"allowUnreachableCode": false,
-		"allowUnusedLabels": false,
-		"alwaysStrict": true,
-		"exactOptionalPropertyTypes": false,
-		"noFallthroughCasesInSwitch": true,
-		"noImplicitAny": true,
-		"noImplicitOverride": true,
-		"noImplicitReturns": true,
-		"noImplicitThis": true,
-		"noPropertyAccessFromIndexSignature": false,
-		"noUncheckedIndexedAccess": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"strict": true,
-		"strictBindCallApply": true,
-		"strictFunctionTypes": true,
-		"strictNullChecks": true,
-		"strictPropertyInitialization": true,
-		"useUnknownInCatchVariables": true,
-		// Modules
-		"baseUrl": "./",
-		"module": "esnext",
-		"moduleResolution": "nodenext",
-		"resolveJsonModule": true,
-		"resolvePackageJsonExports": true,
-		"resolvePackageJsonImports": true,
-		// Emit
-		"declaration": true,
-		"declarationMap": true,
-		"importsNotUsedAsValues": "error",
-		"inlineSourceMap": true,
-		"newLine": "lf",
-		"outDir": "./dist",
-		"preserveConstEnums": false,
-		"removeComments": true,
-		"sourceMap": true,
-		// JS Support
-		"allowJs": false,
-		"checkJs": false,
-		// Editor Support
-		"disableSizeLimit": true,
-		// Interop Constraints
-		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
-		"isolatedModules": true,
-		"preserveSymlinks": false,
-		"verbatimModuleSyntax": true,
-		// Backwards Compatibility
-		"suppressExcessPropertyErrors": false,
-		"suppressImplicitAnyIndexErrors": false,
-		// Language and Environment
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
-		"lib": [
-			"ESNext"
-		],
-		"moduleDetection": "force",
-		"target": "esnext",
-		"useDefineForClassFields": true,
-		// Projects
-		"composite": true,
-		"incremental": true,
-		// Output Formatting
-		"noErrorTruncation": false,
-		"preserveWatchOutput": false,
-		"pretty": true,
-		// Completeness
-		"skipLibCheck": true
-	}
+  "ts-node": {
+    "swc": true
+  },
+  "compilerOptions": {
+    // Type Checking
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "alwaysStrict": true,
+    "exactOptionalPropertyTypes": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "useUnknownInCatchVariables": true,
+    // Modules
+    "baseUrl": "./",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
+    "resolvePackageJsonExports": true,
+    "resolvePackageJsonImports": true,
+    // Emit
+    "declaration": true,
+    "declarationMap": true,
+    "importsNotUsedAsValues": "error",
+    "inlineSourceMap": true,
+    "newLine": "lf",
+    "outDir": "./dist",
+    "preserveConstEnums": false,
+    "removeComments": true,
+    "sourceMap": true,
+    // JS Support
+    "allowJs": false,
+    "checkJs": false,
+    // Editor Support
+    "disableSizeLimit": true,
+    // Interop Constraints
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "preserveSymlinks": false,
+    "verbatimModuleSyntax": true,
+    // Backwards Compatibility
+    "suppressExcessPropertyErrors": false,
+    "suppressImplicitAnyIndexErrors": false,
+    // Language and Environment
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["ESNext"],
+    "moduleDetection": "force",
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    // Projects
+    "composite": true,
+    "incremental": true,
+    // Output Formatting
+    "noErrorTruncation": false,
+    "preserveWatchOutput": false,
+    "pretty": true,
+    // Completeness
+    "skipLibCheck": true
+  }
 }
