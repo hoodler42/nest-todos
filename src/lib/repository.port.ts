@@ -27,9 +27,8 @@ export type PaginatedQueryParams = {
 }
 
 export abstract class RepositoryPort<Entity extends DomainEntity<EntityProps>, EntityProps> {
-  public abstract insert(entity: Entity | Entity[]): Promise<void>
+  public abstract insertOne(entity: Entity): Promise<void>
+  public abstract insertMany(entities: Entity[]): Promise<void>
 
   public abstract findAll(): Promise<Entity[]>
-
-  public abstract findAllPaginated(params: PaginatedQueryParams): Promise<Paginated<Entity>>
 }

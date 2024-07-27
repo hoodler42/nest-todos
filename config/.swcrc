@@ -1,0 +1,28 @@
+{
+  "jsc": {
+    "target": "esnext",
+    "loose": true,
+    "transform": {
+      "decoratorMetadata": true,
+      "legacyDecorator": true,
+      "useDefineForClassFields": false
+    },
+    "externalHelpers": true,
+    "parser": {
+      "syntax": "typescript",
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "keepClassNames": true,
+    "baseUrl": "./",
+    "preserveAllComments": false
+  },
+  "module": {
+    "type": "es6",
+    "strict": true,
+    "strictMode": true,
+    "noInterop": false
+  },
+  "sourceMaps": "inline",
+  "isModule": true
+}

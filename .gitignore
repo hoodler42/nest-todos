@@ -1,4 +1,4 @@
-# compiled output
+# Compiled output
 /dist
 /node_modules
 
@@ -10,10 +10,13 @@
 
 # Tests
 /coverage
-/.nyc_output
 
 # Database
 /pgsql
 
-# dep manager
+# Dependency manager
 .yarn
+
+# Env files
+.env.dev
+.env.test

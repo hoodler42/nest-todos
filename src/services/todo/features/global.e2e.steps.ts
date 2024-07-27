@@ -1,7 +1,7 @@
 import { AfterAll, type IWorldOptions, World, setWorldConstructor } from "@cucumber/cucumber"
 import { Test } from "@nestjs/testing"
 import { DataSource } from "typeorm"
-import { AppModule } from "../src/app.module.js"
+import { AppModule } from "../../../app.module.js"
 
 const moduleFixture = await Test.createTestingModule({
   imports: [AppModule],
@@ -14,7 +14,7 @@ const appUrl = await app.getUrl()
 
 const postgresDataSource = moduleFixture.get<DataSource>(DataSource)
 
-export class CustomWorld extends World {
+export class E2EWorld extends World {
   response!: Response
   data!: unknown
   dataSource!: DataSource
@@ -27,8 +27,7 @@ export class CustomWorld extends World {
     this.appUrl = appUrl
   }
 }
-
-setWorldConstructor(CustomWorld)
+setWorldConstructor(E2EWorld)
 
 AfterAll(async () => {
   await app.close()

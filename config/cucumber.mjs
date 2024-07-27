@@ -1,14 +1,6 @@
-import { register } from "node:module"
-import { pathToFileURL } from "node:url"
-
-register("ts-node/esm", pathToFileURL("./"))
-
 const common = {
-  import: ["features/**/*.steps.ts"],
-}
-
-export default {
-  ...common,
+  loader: ["ts-node/esm"],
+  paths: ["src/services/**/features/**/*.feature"],
   format: ["@cucumber/pretty-formatter"],
   formatOptions: {
     theme: {
@@ -28,8 +20,19 @@ export default {
   },
 }
 
-export const ci = {
+export const e2e = {
   ...common,
-  format: ["html:cucumber-report.html"],
-  publish: true,
+  import: ["src/services/**/features/**/*.e2e.steps.ts"],
 }
+
+export const integration = {
+  ...common,
+  import: ["src/services/**/features/**/*.integration.steps.ts"],
+}
+
+export const unit = {
+  ...common,
+  import: ["src/services/**/features/**/*.unit.steps.ts"],
+}
+
+export default {}

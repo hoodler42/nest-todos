@@ -13,7 +13,7 @@ export class CreateTodoUseCase {
   async execute(title: string) {
     const id = this.idGenerator()
     const newTodo = Todo.create({ id, title })
-    await this.todoRepository.insert(newTodo)
+    await this.todoRepository.insertOne(newTodo)
     return newTodo
   }
 }

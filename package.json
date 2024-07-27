@@ -7,34 +7,30 @@
   "type": "module",
   "scripts": {
     "clean": "rm -rf dist",
-
-    "build": "yarn clean && nest build && yarn generate-sdl",
-
-    "generate-sdl": "node dist/tools/SDLBuilder.js",
-
-    "test": "yarn build && NODE_ENV=test vitest run",
-    "test:watch": "yarn build && NODE_ENV=test vitest",
-    "test:debug": "yarn build && NODE_ENV=test vitest --inspect-brk --inspect --logHeapUsage --threads=false",
-    "test:e2e": "yarn build && NODE_ENV=test yarn exec cucumber-js",
-
+    "build": "yarn clean && yarn build:swc && yarn build:sdls",
+    "build:swc": "yarn exec swc src -d dist --config-file config/.swcrc --copy-files --strip-leading-paths",
+    "build:sdls": "node dist/tools/SDLBuilder.js",
+    "test": "yarn build && yarn test:unit && yarn test:integration && yarn test:e2e",
+    "test:unit": "NODE_ENV=test yarn exec cucumber-js --config config/cucumber.mjs -p unit",
+    "test:integration": "NODE_ENV=test yarn exec cucumber-js --config config/cucumber.mjs -p integration",
+    "test:e2e": "NODE_ENV=test yarn exec cucumber-js --config config/cucumber.mjs -p e2e",
     "start": "yarn build && NODE_ENV=dev node dist/main --watch",
     "start:debug": "yarn build && NODE_ENV=dev node dist/main --debug --watch",
     "start:prod": "yarn build && NODE_ENV=prod node dist/main",
-
-    "migration:generate": "typeorm-ts-node-esm migration:generate ./src/todo/infrastructure/database/postgres/migrations/$MIGRATION_NAME -d ./src/todo/infrastructure/database/postgres/datasource.ts",
-    "migration:show": "typeorm-ts-node-esm migration:show -d ./src/todo/infrastructure/database/postgres/datasource.ts",
-    "migration:run": "typeorm-ts-node-esm migration:run -d ./src/todo/infrastructure/database/postgres/datasource.ts"
+    "migration:generate": "typeorm-ts-node-esm migration:generate ./src/services/todo/infrastructure/database/postgres/migrations/$MIGRATION_NAME -d ./src/services/todo/infrastructure/database/postgres/datasource.ts",
+    "migration:show": "typeorm-ts-node-esm migration:show -d ./src/services/todo/infrastructure/database/postgres/datasource.ts",
+    "migration:run": "typeorm-ts-node-esm migration:run -d ./src/services/todo/infrastructure/database/postgres/datasource.ts"
   },
   "dependencies": {
-    "@apollo/server": "^4.10.4",
-    "@nestjs/apollo": "^12.1.0",
-    "@nestjs/cli": "^10.3.2",
-    "@nestjs/common": "^10.3.9",
-    "@nestjs/config": "^3.2.2",
-    "@nestjs/core": "^10.3.9",
-    "@nestjs/graphql": "^12.1.1",
-    "@nestjs/platform-express": "^10.3.9",
-    "@nestjs/schematics": "^10.1.1",
+    "@apollo/server": "^4.10.5",
+    "@nestjs/apollo": "^12.2.0",
+    "@nestjs/cli": "^10.4.2",
+    "@nestjs/common": "^10.3.10",
+    "@nestjs/config": "^3.2.3",
+    "@nestjs/core": "^10.3.10",
+    "@nestjs/graphql": "^12.2.0",
+    "@nestjs/platform-express": "^10.3.10",
+    "@nestjs/schematics": "^10.1.3",
     "@nestjs/typeorm": "^10.0.2",
     "graphql": "^16.9.0",
     "pg": "^8.12.0",
@@ -45,27 +41,27 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.2",
+    "@biomejs/biome": "^1.8.3",
     "@cucumber/cucumber": "^10.8.0",
     "@cucumber/messages": "^25.0.1",
     "@cucumber/pretty-formatter": "^1.0.1",
-    "@nestjs/testing": "^10.3.9",
-    "@swc/cli": "^0.3.12",
-    "@swc/core": "^1.6.3",
-    "@swc/helpers": "^0.5.11",
+    "@nestjs/testing": "^10.3.10",
+    "@swc/cli": "^0.4.0",
+    "@swc/core": "^1.7.1",
+    "@swc/helpers": "^0.5.12",
     "@types/express": "^4.17.21",
-    "@types/node": "^20.14.7",
-    "@vitest/coverage-v8": "^1.6.0",
+    "@types/node": "^20.14.12",
+    "@vitest/coverage-v8": "^2.0.4",
     "earl": "^1.3.0",
     "source-map-support": "^0.5.21",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.2",
-    "unplugin-swc": "^1.4.5",
-    "vitest": "^1.6.0"
+    "typescript": "^5.5.4",
+    "unplugin-swc": "^1.5.1",
+    "vitest": "^2.0.4"
   },
   "packageManager": "yarn@4.3.1",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.0.0"
   },
   "engineStrict": true,
   "private": true

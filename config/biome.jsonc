@@ -1,5 +1,5 @@
 {
-  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "$schema": "../node_modules/@biomejs/biome/configuration_schema.json",
   "formatter": {
     "attributePosition": "auto",
     "enabled": true,
@@ -7,7 +7,7 @@
     "indentStyle": "space",
     "indentWidth": 2,
     "lineEnding": "lf",
-    "lineWidth": 120
+    "lineWidth": 100
   },
   "javascript": {
     "formatter": {
@@ -41,7 +41,13 @@
       "style": {
         "noDefaultExport": "off",
         "noParameterProperties": "off",
-        "useImportType": "off"
+        "useImportType": "off",
+        "useNamingConvention": {
+          "level": "warn",
+          "options": {
+            "strictCase": false
+          }
+        }
       },
       "suspicious": {
         "noEmptyBlockStatements": "off",

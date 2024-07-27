@@ -8,14 +8,14 @@ import { CreateTodoUseCase } from "./create-todo.use-case.js"
 describe("CreateTodoUseCase", () => {
   let useCase: CreateTodoUseCase
   let idGeneratorSpy: SpyOf<IdGenerator>
-  let todoRepoInsertSpy: SpyOf<TodoRepository["insert"]>
+  let todoRepoInsertSpy: SpyOf<TodoRepository["insertOne"]>
 
   beforeEach(async () => {
     vi.resetAllMocks()
 
     const idGenerator = vi.fn()
     const todoRepository: Partial<TodoRepository> = {
-      insert: vi.fn(),
+      insertOne: vi.fn(),
     }
 
     useCase = new CreateTodoUseCase(idGenerator as IdGenerator, todoRepository as TodoRepository)

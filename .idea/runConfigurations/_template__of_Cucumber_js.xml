@@ -1,11 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
-    <option name="myFilePath" value="$PROJECT_DIR$/features/" />
+    <option name="myFilePath" value="$PROJECT_DIR$/src/" />
     <option name="myNameFilter" value="" />
-    <option name="cucumberJsArguments" value="" />
+    <option name="cucumberJsArguments" value="--config config/cucumber.mjs" />
     <option name="workingDirectory" value="$PROJECT_DIR$" />
     <envs>
-      <env name="NODE_ENV" value="dev" />
+      <env name="NODE_ENV" value="test" />
     </envs>
     <method v="2" />
   </configuration>

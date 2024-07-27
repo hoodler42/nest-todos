@@ -6,17 +6,19 @@ import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from "@nestjs/graphq
 import { lexicographicSortSchema, printSchema } from "graphql/utilities/index.js"
 import { TodoResolver } from "../services/todo/interface/http/graphql/todo.resolver.js"
 
-const app = await NestFactory.create(GraphQLSchemaBuilderModule)
+const app = await NestFactory.createApplicationContext(GraphQLSchemaBuilderModule, { logger: false })
 await app.init()
+
+const logger = new Logger("SDLBuilder")
+app.useLogger(logger)
 
 const gqlSchemaFactory = app.get(GraphQLSchemaFactory)
 
-// biome-ignore lint/complexity/noBannedTypes: <explanation>
+// biome-ignore lint/complexity/noBannedTypes: I don't know what a resolver type is.
 const services: { [key: string]: Function[] } = {
   todo: [TodoResolver],
 }
 
-const logger = new Logger("SDLBuilder")
 logger.log("Generating SDLs...")
 for (const [serviceName, resolvers] of Object.entries(services)) {
   logger.log(`Generating SDL for "${serviceName}" service`)
@@ -29,7 +31,6 @@ for (const [serviceName, resolvers] of Object.entries(services)) {
 
   logger.log(`SDL generated for "${serviceName}" service`)
 }
+logger.log("SDLs successfully generated")
 
-logger.log("Closing Nest application...")
 await app.close()
-logger.log("Nest application successfully closed")
