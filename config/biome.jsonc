@@ -57,5 +57,8 @@
   },
   "organizeImports": {
     "enabled": true
+  },
+  "files": {
+    "ignore": ["**/sdk.ts"]
   }
 }

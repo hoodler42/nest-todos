@@ -6,7 +6,9 @@ import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from "@nestjs/graphq
 import { lexicographicSortSchema, printSchema } from "graphql/utilities/index.js"
 import { TodoResolver } from "../services/todo/interface/http/graphql/todo.resolver.js"
 
-const app = await NestFactory.createApplicationContext(GraphQLSchemaBuilderModule, { logger: false })
+const app = await NestFactory.createApplicationContext(GraphQLSchemaBuilderModule, {
+  logger: false,
+})
 await app.init()
 
 const logger = new Logger("SDLBuilder")
@@ -15,17 +17,20 @@ app.useLogger(logger)
 const gqlSchemaFactory = app.get(GraphQLSchemaFactory)
 
 // biome-ignore lint/complexity/noBannedTypes: I don't know what a resolver type is.
-const services: { [key: string]: Function[] } = {
+const resolversByService: { [key: string]: Function[] } = {
   todo: [TodoResolver],
 }
 
 logger.log("Generating SDLs...")
-for (const [serviceName, resolvers] of Object.entries(services)) {
+for (const [serviceName, resolvers] of Object.entries(resolversByService)) {
   logger.log(`Generating SDL for "${serviceName}" service`)
 
   const schema = await gqlSchemaFactory.create(resolvers)
   fs.writeFileSync(
-    path.join(process.cwd(), `src/services/${serviceName}/public/schema-${serviceName}.gql`),
+    path.join(
+      process.cwd(),
+      `src/services/${serviceName}/interface/http/graphql/${serviceName}.schema.graphql`,
+    ),
     printSchema(lexicographicSortSchema(schema)),
   )
 
