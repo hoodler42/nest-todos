@@ -1,3 +1,7 @@
+type Mutation {
+  createTodo(title: String!): TodoGraphql!
+}
+
 type Query {
   getTodos: [TodoGraphql!]!
 }
