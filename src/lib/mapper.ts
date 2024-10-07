@@ -1,11 +1,9 @@
-import type { DomainEntity } from "./entities/domain.entity.js"
-import type { DtoEntity } from "./entities/dto.entity.js"
-import type { OrmEntity } from "./entities/orm.entity.js"
+import type { DTO } from "./data-objects/dto.js"
+import type { Entity } from "./data-objects/entity.js"
+import type { Model } from "./data-objects/model.js"
 
-export abstract class Mapper<DomainEntityProps> {
-  abstract toDomainFromOrm(ormEntity: OrmEntity): DomainEntity<DomainEntityProps>
+export abstract class Mapper<EntityProps> {
+  abstract toEntityFromModel(model: Model): Entity<EntityProps>
 
-  abstract toDomainFromDto(dtoEntity: DtoEntity): DomainEntity<DomainEntityProps>
-
-  abstract toDTOFromDomain(domainEntity: DomainEntity<DomainEntityProps>): DtoEntity
+  abstract toDTOFromEntity(entity: Entity<EntityProps>): DTO
 }

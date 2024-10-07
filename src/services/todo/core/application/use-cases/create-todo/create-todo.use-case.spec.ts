@@ -20,7 +20,7 @@ describe("CreateTodoUseCase", () => {
 
     useCase = new CreateTodoUseCase(idGenerator as IdGenerator, todoRepository as TodoRepository)
 
-    todoRepoInsertSpy = vi.spyOn(todoRepository, "insert")
+    todoRepoInsertSpy = vi.spyOn(todoRepository, "insertOne")
     idGeneratorSpy = idGenerator
   })
 

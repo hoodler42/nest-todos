@@ -33,6 +33,7 @@ export const integration = {
 export const unit = {
   ...common,
   import: ["src/services/**/features/**/*.unit.steps.ts"],
+  parallel: 4,
 }
 
 export default {}

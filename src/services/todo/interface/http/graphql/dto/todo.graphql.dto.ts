@@ -1,7 +1,8 @@
 import { Field, ObjectType } from "@nestjs/graphql"
+import type { TodoDTO } from "../../../dto/todo.dto.js"
 
 @ObjectType()
-export class TodoGraphql {
+export class TodoGraphqlDTO implements TodoDTO {
   @Field()
   id!: string
 

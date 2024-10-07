@@ -2,8 +2,8 @@ import { ConsoleLogger, type LoggerService, Module } from "@nestjs/common"
 import { ConfigModule } from "@nestjs/config"
 import { NestFactory } from "@nestjs/core"
 import { DataSource } from "typeorm"
-import { validateConfig } from "../../../../../env.validation.js"
-import { TodoDatabaseModule } from "../todo.database.module.js"
+import { validateConfig } from "../../../../../../env.validation.js"
+import { TodoDatabaseModule } from "../../todo.database.module.js"
 
 export class DataSourceLogger extends ConsoleLogger implements LoggerService {
   override error(message: string, stack?: string, context?: string) {

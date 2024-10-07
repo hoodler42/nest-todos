@@ -1,5 +1,3 @@
-import type { DomainEntity } from "./entities/domain.entity.js"
-
 export class Paginated<T> {
   readonly count: number
   readonly limit: number
@@ -26,7 +24,7 @@ export type PaginatedQueryParams = {
   orderBy: OrderBy
 }
 
-export abstract class RepositoryPort<Entity extends DomainEntity<EntityProps>, EntityProps> {
+export abstract class RepositoryPort<Entity> {
   public abstract insertOne(entity: Entity): Promise<void>
   public abstract insertMany(entities: Entity[]): Promise<void>
 

@@ -1,10 +1,9 @@
 import { Body, Controller, Get, HttpCode, Inject, Post } from "@nestjs/common"
-import { ZodPipe } from "../../../../../zod.pipe.js"
 import { CreateTodoUseCase } from "../../../core/application/use-cases/create-todo/create-todo.use-case.js"
 import { ListTodosUseCase } from "../../../core/application/use-cases/list-todos/list-todos.use-case.js"
 import { TodoMapper } from "../../../mapper/todo.mapper.js"
-import { type CreateTodoDto, CreateTodoDtoSchema } from "./dto/input/create-todo.dto.js"
-import type { TodoDto } from "./dto/output/todo.dto.js"
+import { type CreateTodoDto } from "./dto/input/create-todo.dto.js"
+import type { TodoRestDTO } from "./dto/output/todo.rest.dto.js"
 
 @Controller("todos")
 export class TodoController {
@@ -15,16 +14,16 @@ export class TodoController {
   ) {}
 
   @Get()
-  async listTodos(): Promise<TodoDto[]> {
+  async listTodos(): Promise<TodoRestDTO[]> {
     const todos = await this.listTodosUseCase.execute()
 
-    return todos.map(this.todoMapper.toDTOFromDomain)
+    return todos.map(this.todoMapper.toDTOFromEntity)
   }
 
   @Post()
   @HttpCode(201)
-  async createTodo(@Body(new ZodPipe(CreateTodoDtoSchema)) body: CreateTodoDto): Promise<TodoDto> {
+  async createTodo(@Body() body: CreateTodoDto): Promise<TodoRestDTO> {
     const todoDomain = await this.createTodoUseCase.execute(body.title)
-    return this.todoMapper.toDTOFromDomain(todoDomain)
+    return this.todoMapper.toDTOFromEntity(todoDomain)
   }
 }

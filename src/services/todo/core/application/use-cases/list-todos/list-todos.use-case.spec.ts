@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import type { SpyOf } from "../../../../../../lib/test/types.js"
-import { Todo } from "../../../domain/entities/todo.js"
+import { TodoEntity } from "../../../domain/entities/todo.entity.js"
 import type { TodoRepository } from "../../ports/repositories/todo.repository.js"
 import { ListTodosUseCase } from "./list-todos.use-case.js"
 
@@ -23,8 +23,8 @@ describe("ListTodosUseCase", () => {
 
   it("Should get a todo", async () => {
     const todosToRetrieve = [
-      new Todo({ id: "2", props: { title: "Do this", isCompleted: false } }),
-      new Todo({ id: "3", props: { title: "Do that", isCompleted: false } }),
+      new TodoEntity({ id: "2", props: { title: "Do this", isCompleted: false } }),
+      new TodoEntity({ id: "3", props: { title: "Do that", isCompleted: false } }),
     ]
     todoRepoFindAllSpy.mockResolvedValue(todosToRetrieve)
 

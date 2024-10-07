@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common"
-import { Todo } from "../../../domain/entities/todo.js"
+import { TodoEntity } from "../../../domain/entities/todo.entity.js"
 import { ID_GENERATOR_TOKEN, type IdGenerator } from "../../ports/id-generator/id-generator.js"
 import { TodoRepository } from "../../ports/repositories/todo.repository.js"
 
@@ -12,8 +12,8 @@ export class CreateTodoUseCase {
 
   async execute(title: string) {
     const id = this.idGenerator()
-    const newTodo = Todo.create({ id, title })
-    await this.todoRepository.insertOne(newTodo)
-    return newTodo
+    const todoCreated = TodoEntity.create({ id, title })
+    await this.todoRepository.insertOne(todoCreated)
+    return todoCreated
   }
 }

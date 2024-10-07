@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common"
 import { ConfigModule, ConfigService } from "@nestjs/config"
 import { TypeOrmModule } from "@nestjs/typeorm"
-import { TodoTypeOrm } from "./entities/todo.typeorm.js"
+import { TodoModel } from "./models/todo.model.js"
 
-const ormEntities = [TodoTypeOrm]
+const ormEntities = [TodoModel]
 
 @Module({
   imports: [
