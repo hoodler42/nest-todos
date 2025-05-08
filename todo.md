@@ -9,10 +9,11 @@
 - [x] Codegen ORM
 - [x] GQL
 - [x] Codegen GQL
+- [ ] Test strategy
+- [ ] Transactions / UnitOfWork
 - [ ] Domain Events
 - [ ] ES & projections
 - [ ] Service tiers (email, Slack)
-- [ ] Transactions
 - [ ] Git hooks
 - [ ] Errors handling
 - [ ] GitHub Actions

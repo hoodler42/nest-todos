@@ -7,7 +7,8 @@ I discovered that three types of tests are needed to use TDD along with BDD.
 
 ## Hexagonal architecture
 
-This documentation is based on the premise that you have a minimal amount of knowledge about software design and in
+This documentation is based on the premise that you have a minimal amount of knowledge about
+software design and in
 particular, the Hexagonal Architecture.
 
 <img src="assets/hexagonal_architecture.png" width=600>
@@ -42,7 +43,8 @@ Integration tests will check secondary adapters using business rules.
 
 You will execute your command or your use-case without mocking anything either.
 
-The goal is to check if your secondary adapters are doing their job, you don't have to check every branches of your
+The goal is to check if your secondary adapters are doing their job, you don't have to check every
+branches of your
 use-case.
 You should only test the branches that imply calling your secondary adapters differently.
 
@@ -65,7 +67,7 @@ You should only test the branches that imply calling your secondary adapters dif
 
 ### Acceptance tests
 
-First create a new ".feature" file inside the feature [folder](../features) and make it fail.
+First create a new ".feature" file inside the feature [folder](../tests) and make it fail.
 
 ### Unit tests
 

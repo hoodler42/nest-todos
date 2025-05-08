@@ -6,21 +6,21 @@
   "main": "dist/main.js",
   "type": "module",
   "scripts": {
-    "clean": "rm -rf dist && rm -f src/services/todo/interface/http/graphql/todo.schema.graphql && rm -f src/services/todo/interface/http/graphql/client-request/sdk.ts",
+    "clean": "rm -rf dist && rm -f src/modules/todo/interface/http/graphql/todo.schema.graphql && rm -f src/modules/todo/interface/http/graphql/client-request/sdk.ts",
     "build": "yarn clean && yarn build:swc && yarn build:sdls && yarn build:codegen",
     "build:swc": "yarn exec swc src -d dist --config-file config/.swcrc --copy-files --strip-leading-paths",
     "build:sdls": "node dist/tools/SDLBuilder.js",
-    "build:codegen": "yarn exec graphql-codegen --config config/codegen.ts",
-    "test": "yarn build && yarn test:unit && yarn test:integration && yarn test:e2e",
-    "test:unit": "NODE_ENV=test yarn exec cucumber-js --config config/cucumber.mjs -p unit",
-    "test:integration": "NODE_ENV=test yarn exec cucumber-js --config config/cucumber.mjs -p integration",
-    "test:e2e": "NODE_ENV=test yarn exec cucumber-js --config config/cucumber.mjs -p e2e",
+    "build:codegen": "yarn exec graphql-codegen --config config/graphql-codegen.ts",
+    "test": "yarn build && yarn test:units && yarn test:integrations && yarn test:e2e",
+    "test:units": "NODE_ENV=test yarn exec vitest --config config/vitest/units.vitest.config.mjs --run",
+    "test:integrations": "NODE_ENV=test yarn exec vitest --config config/vitest/integrations.vitest.config.mjs --run",
+    "test:e2e": "NODE_ENV=test yarn exec vitest --config config/vitest/e2e.vitest.config.mjs --run",
     "start": "yarn build && NODE_ENV=dev node dist/main --watch",
     "start:debug": "yarn build && NODE_ENV=dev node dist/main --debug --watch",
     "start:prod": "yarn build && NODE_ENV=prod node dist/main",
-    "migration:generate": "typeorm-ts-node-esm migration:generate src/services/todo/infrastructure/database/datasources/postgres/migrations/$MIGRATION_NAME -d ./src/services/todo/infrastructure/database/postgres/datasource.ts",
-    "migration:show": "typeorm-ts-node-esm migration:show -d src/services/todo/infrastructure/database/datasources/postgres/datasource.ts",
-    "migration:run": "typeorm-ts-node-esm migration:run -d src/services/todo/infrastructure/database/datasources/postgres/datasource.ts"
+    "migration:generate": "typeorm-ts-node-esm migration:generate src/modules/todo/infrastructure/database/datasources/postgres/migrations/$MIGRATION_NAME -d src/modules/todo/infrastructure/database/postgres/datasource.ts",
+    "migration:show": "typeorm-ts-node-esm migration:show -d src/modules/todo/infrastructure/database/datasources/postgres/datasource.ts",
+    "migration:run": "typeorm-ts-node-esm migration:run -d src/modules/todo/infrastructure/database/datasources/postgres/datasource.ts"
   },
   "dependencies": {
     "@apollo/server": "^4.11.0",
@@ -43,6 +43,7 @@
     "uuid": "^10.0.0"
   },
   "devDependencies": {
+    "@amiceli/vitest-cucumber": "^3.7.1",
     "@biomejs/biome": "^1.9.3",
     "@cucumber/cucumber": "^11.0.1",
     "@cucumber/messages": "^26.0.1",

@@ -1,8 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Tests" type="CompoundRunConfigurationType">
-    <toRun name="All E2E" type="cucumber.js" />
-    <toRun name="All Integration" type="cucumber.js" />
-    <toRun name="All Units" type="cucumber.js" />
-    <method v="2" />
-  </configuration>
-</component>
