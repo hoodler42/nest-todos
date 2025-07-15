@@ -2,8 +2,8 @@ import type { INestApplication } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { Test, TestingModule } from "@nestjs/testing";
 import { GraphQLClient } from "graphql-request";
-import { DataType, newDb } from "pg-mem";
 import { DataSource, type Repository } from "typeorm";
+import { PGliteDriver } from "typeorm-pglite";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import type { EnvSchema } from "../../src/env.validation.js";
 import { givenInvalidTitle, givenValidTitle } from "../../src/modules/todo/core/domain/entities/todo.givens.js";
@@ -12,42 +12,15 @@ import { TodoModule } from "../../src/modules/todo/todo.module.js";
 import { type CreateTodoMutation, getSdk, type Sdk } from "./graphql/todo.sdk.js";
 
 async function setupDataSource() {
-  const db = newDb({
-    autoCreateForeignKeyIndices: true,
-  })
-
-  db.public.registerFunction({
-    implementation: () => "PostgreSQL 14.0 (pg-mem)",
-    name: "version",
-    returns: DataType.text,
-  })
-
-  db.public.registerFunction({
-    implementation: () => "test_db",
-    name: "current_database",
-    returns: DataType.text,
-  })
-
-  db.public.registerFunction({
-    implementation: () => "public",
-    name: "current_schema",
-    returns: DataType.text,
-  })
-
-  db.public.registerFunction({
-    implementation: () => "public",
-    name: "uuid_generate_v4",
-    returns: DataType.uuid,
-  })
-
-  const ds: DataSource = await db.adapters.createTypeormDataSource({
-    entities: [TodoModel],
+  const dataSource = new DataSource({
     type: "postgres",
+    entities: [TodoModel],
+    synchronize: true,
+    driver: new PGliteDriver().driver,
   })
-  await ds.initialize()
-  await ds.synchronize()
 
-  return ds
+  await dataSource.initialize()
+  return dataSource
 }
 
 describe("Scenario: Create a todo", () => {
@@ -87,8 +60,12 @@ describe("Scenario: Create a todo", () => {
   })
 
   afterAll(async () => {
-    await postgresDataSource.destroy()
-    await app.close()
+    if (postgresDataSource) {
+      await postgresDataSource.destroy()
+    }
+    if (app) {
+      await app.close()
+    }
   })
 
   givenValidTitle(validTitle => {

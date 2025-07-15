@@ -1,9 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
-import { Model } from "../../../../../lib/data-objects/model.js"
+import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Model } from "../../../../../lib/data-objects/model.js";
 
 @Entity("todo")
 export class TodoModel extends Model {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryColumn("uuid")
   public id!: string
 
   @Column({ type: "text", nullable: false })
