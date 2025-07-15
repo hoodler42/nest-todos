@@ -1,4 +1,6 @@
-import { z } from "zod"
+/** biome-ignore-all lint/style/useNamingConvention: Env variables use UPPER_SNAKE_CASE */
+
+import { z } from "zod";
 
 enum Environments {
   Development = "dev",
@@ -7,13 +9,13 @@ enum Environments {
 }
 
 const configSchema = z.object({
-  NODE_ENV: z.nativeEnum(Environments),
-  DATABASE_URL: z.string().ip(),
-  DATABASE_PORT: z.coerce.number().min(1024).max(65535),
-  DATABASE_USER: z.string(),
-  DATABASE_PASSWORD: z.string(),
-  DATABASE_NAME: z.string(),
   APP_PORT: z.coerce.number().min(1024).max(65535),
+  DATABASE_NAME: z.string(),
+  DATABASE_PASSWORD: z.string(),
+  DATABASE_PORT: z.coerce.number().min(1024).max(65535),
+  DATABASE_URL: z.ipv4(),
+  DATABASE_USER: z.string(),
+  NODE_ENV: z.enum(Environments),
 })
 
 export type EnvSchema = z.infer<typeof configSchema>

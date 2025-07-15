@@ -20,3 +20,7 @@
 # Env files
 .env.dev
 .env.test
+
+# Codegen
+*.sdk.ts
+*.schema.graphql

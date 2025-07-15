@@ -6,6 +6,7 @@
       <script value="migration:show" />
     </scripts>
     <node-interpreter value="project" />
+    <package-manager value="pnpm" />
     <envs>
       <env name="NODE_ENV" value="dev" />
     </envs>

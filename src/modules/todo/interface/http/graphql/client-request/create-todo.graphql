@@ -1,7 +1,0 @@
-mutation CreateTodo($title: String!) {
-  createTodo(title: $title) {
-    id
-    title
-    isCompleted
-  }
-}

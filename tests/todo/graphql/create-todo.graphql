@@ -1,0 +1,13 @@
+mutation createTodo($title: String!) {
+  createTodo(title: $title) {
+    __typename
+    ... on CreateTodoSuccess {
+      id
+      title
+      isCompleted
+    }
+    ... on InvalidTodoRejection {
+      reason
+    }
+  }
+}

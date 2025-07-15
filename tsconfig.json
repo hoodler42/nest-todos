@@ -1,12 +1,31 @@
 {
-  "ts-node": {
-    "swc": true
-  },
   "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "alwaysStrict": true,
+    "baseUrl": "./",
+    "checkJs": false,
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "disableSizeLimit": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
     "exactOptionalPropertyTypes": false,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "error",
+    "incremental": true,
+    "inlineSourceMap": true,
+    "isolatedModules": true,
+    "lib": ["ESNext"],
+    "module": "NodeNext",
+    "moduleDetection": "force",
+    "moduleResolution": "NodeNext",
+    "newLine": "lf",
+    "noErrorTruncation": false,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitOverride": true,
@@ -16,59 +35,30 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "outDir": "./dist",
+    "preserveConstEnums": false,
+    "preserveSymlinks": false,
+    "preserveWatchOutput": false,
+    "pretty": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "resolvePackageJsonExports": true,
+    "resolvePackageJsonImports": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
     "strict": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "useUnknownInCatchVariables": true,
-
-    "baseUrl": "./",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "resolveJsonModule": true,
-    "resolvePackageJsonExports": true,
-    "resolvePackageJsonImports": true,
-
-    "declaration": true,
-    "declarationMap": true,
-    "importsNotUsedAsValues": "error",
-    "inlineSourceMap": true,
-    "newLine": "lf",
-    "outDir": "./dist",
-    "preserveConstEnums": false,
-    "removeComments": true,
-    "sourceMap": true,
-
-    "allowJs": false,
-    "checkJs": false,
-
-    "disableSizeLimit": true,
-
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "preserveSymlinks": false,
-    "verbatimModuleSyntax": true,
-
     "suppressExcessPropertyErrors": false,
     "suppressImplicitAnyIndexErrors": false,
-
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": ["ESNext"],
-    "moduleDetection": "force",
     "target": "esnext",
     "useDefineForClassFields": true,
-
-    "composite": true,
-    "incremental": true,
-
-    "noErrorTruncation": false,
-    "preserveWatchOutput": false,
-    "pretty": true,
-
-    "skipLibCheck": true
+    "useUnknownInCatchVariables": true,
+    "verbatimModuleSyntax": true
+  },
+  "ts-node": {
+    "swc": true
   }
 }

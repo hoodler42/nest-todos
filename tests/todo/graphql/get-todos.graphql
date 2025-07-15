@@ -1,5 +1,6 @@
-query GetTodos{
+query getTodos {
   getTodos {
+    __typename
     id
     title
     isCompleted

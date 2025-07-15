@@ -1,10 +1,10 @@
-import { Logger } from "@nestjs/common"
-import { NestFactory } from "@nestjs/core"
-import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from "@nestjs/graphql"
-import { lexicographicSortSchema, printSchema } from "graphql/utilities/index.js"
-import fs from "node:fs"
-import path from "node:path"
-import { TodoResolver } from "../modules/todo/interface/http/graphql/todo.resolver.js"
+import { Logger } from "@nestjs/common";
+import { NestFactory } from "@nestjs/core";
+import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from "@nestjs/graphql";
+import { lexicographicSortSchema, printSchema } from "graphql/utilities/index.js";
+import fs from "node:fs";
+import path from "node:path";
+import { TodoResolver } from "../modules/todo/interface/http/graphql/todo.resolver.js";
 
 const app = await NestFactory.createApplicationContext(GraphQLSchemaBuilderModule, {
   logger: false,
@@ -27,10 +27,7 @@ for (const [serviceName, resolvers] of Object.entries(resolversByService)) {
 
   const schema = await gqlSchemaFactory.create(resolvers)
   fs.writeFileSync(
-    path.join(
-      process.cwd(),
-      `src/services/${serviceName}/interface/http/graphql/${serviceName}.schema.graphql`,
-    ),
+    path.join(process.cwd(), `src/modules/${serviceName}/interface/http/graphql/${serviceName}.schema.graphql`),
     printSchema(lexicographicSortSchema(schema)),
   )
 

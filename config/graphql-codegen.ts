@@ -1,15 +1,15 @@
-import type { CodegenConfig } from "@graphql-codegen/cli"
+import type { CodegenConfig } from "@graphql-codegen/cli";
 
-const config: CodegenConfig = {
-  overwrite: true,
-  schema: "src/modules/todo/interface/http/graphql/todo.schema.graphql",
-  documents: "src/modules/todo/interface/http/graphql/client-request/*.graphql",
+const todoCodegenConfig: CodegenConfig = {
+  documents: "tests/todo/graphql/**/*.graphql",
   emitLegacyCommonJSImports: false,
   generates: {
-    "src/services/todo/interface/http/graphql/client-request/sdk.ts": {
+    "tests/todo/graphql/todo.sdk.ts": {
       plugins: ["typescript", "typescript-operations", "typescript-graphql-request"],
     },
   },
+  overwrite: true,
+  schema: "src/modules/todo/interface/http/graphql/todo.schema.graphql",
 }
 
-export default config
+export default todoCodegenConfig
