@@ -5,18 +5,18 @@ Build a service to manage Todos.
 ### Requirements
 
 - [ ] API to query Todos (potentially many!)
-  - Query Todos that are not done
-  - Todos can be grouped in lists
+    - Query Todos that are not done
+    - Todos can be grouped in lists
 - [ ] API to add a TodoEntity
 - [ ] API to update Todos
-  - Mark Todos as done
+    - Mark Todos as done
 - [ ] We would like you to integrate with another service provider. It can be any TodoEntity
   service (e.g. Microsoft TodoEntity
   APIs), or you can also use a mock provider. Todos should be kept in sync between our service and
   the third-party
   integration
-  - Todos created in the third-party integration should always be created in our service
-  - The status of todos should always be in sync between our service and the integration
+    - Todos created in the third-party integration should always be created in our service
+    - The status of todos should always be in sync between our service and the integration
 
 ## Installation
 

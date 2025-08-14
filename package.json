@@ -16,7 +16,7 @@
     "codegen:sdl": "node dist/tools/SDLBuilder.js",
     "codegen:sdk": "$npm_execpath exec graphql-codegen --config config/graphql-codegen.ts",
     "codegen:models": "$npm_execpath exec prisma generate",
-    "test": "NODE_ENV=test $npm_execpath exec vitest run --config config/vitest.config.mjs",
+    "test": "NODE_ENV=test $npm_execpath exec vitest run --config config/vitest.config.ts",
     "start": "$npm_execpath build && NODE_ENV=dev node dist/main --watch",
     "start:debug": "$npm_execpath build && NODE_ENV=dev node dist/main --debug --watch",
     "start:prod": "$npm_execpath build && NODE_ENV=prod node dist/main"
