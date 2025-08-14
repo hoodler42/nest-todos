@@ -2,10 +2,9 @@
 
 - [x] Biome
 - [x] SWC / Bun
-- [x] All tests with Cucumber
 - [x] Nest modules
 - [x] DDH
-- [ ] Prisma + Kysely
+- [x] Prisma + Kysely
 - [x] Codegen ORM
 - [x] GQL
 - [x] Codegen GQL
