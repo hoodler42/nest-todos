@@ -1,11 +1,9 @@
-import { Module } from "@nestjs/common"
-import { TodoApplicationModule } from "../../../core/application/todo.application.module.js"
-import { TodoMapperModule } from "../../../mapper/todo.mapper.module.js"
-import { TodoController } from "./todo.controller.js"
+import { Module } from "@nestjs/common";
+import { TodoApplicationModule } from "../../../core/application/todo.application.module.js";
+import { TodoController } from "./todo.controller.js";
 
 @Module({
   controllers: [TodoController],
-  imports: [TodoMapperModule, TodoApplicationModule],
+  imports: [TodoApplicationModule],
 })
-export class TodoRestModule {
-}
+export class TodoRestModule {}

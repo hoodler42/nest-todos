@@ -1,5 +1,5 @@
-query getTodos {
-  getTodos {
+query listTodos {
+  listTodos {
     __typename
     id
     title

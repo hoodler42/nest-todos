@@ -1,5 +1,4 @@
 /** biome-ignore-all lint/style/useNamingConvention: Env variables use UPPER_SNAKE_CASE */
-
 import { z } from "zod";
 
 enum Environments {
@@ -16,13 +15,13 @@ const configSchema = z.object({
   DATABASE_URL: z.ipv4(),
   DATABASE_USER: z.string(),
   NODE_ENV: z.enum(Environments),
-})
+});
 
-export type EnvSchema = z.infer<typeof configSchema>
+export type EnvSchema = z.infer<typeof configSchema>;
 
 export function validateConfig(config: unknown): EnvSchema {
   if (!process.env.NODE_ENV) {
-    throw new Error("NODE_ENV must be defined")
+    throw new Error("NODE_ENV must be defined");
   }
-  return configSchema.parse(config)
+  return configSchema.parse(config);
 }

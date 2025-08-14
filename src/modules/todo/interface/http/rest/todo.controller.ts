@@ -1,32 +1,31 @@
 import { Body, Controller, Get, HttpCode, Inject, Post } from "@nestjs/common";
 import { CreateTodoUseCase } from "../../../core/application/use-cases/create-todo.use-case.js";
-import { ListTodosUseCase } from "../../../core/application/use-cases/list-todos/list-todos.use-case.js";
-import { TodoMapper } from "../../../mapper/todo.mapper.js";
+import { ListTodosUseCase } from "../../../core/application/use-cases/list-todos.use-case.js";
+import { todoMapper } from "../../../todo.mapper.js";
 import { type CreateTodoDto } from "./dto/input/create-todo.dto.js";
 import type { TodoRestDTO } from "./dto/output/todo.rest.dto.js";
 
 @Controller("todos")
 export class TodoController {
   constructor(
-    @Inject(TodoMapper) private readonly todoMapper: TodoMapper,
     @Inject(ListTodosUseCase) private readonly listTodosUseCase: ListTodosUseCase,
     @Inject(CreateTodoUseCase) private readonly createTodoUseCase: CreateTodoUseCase,
   ) {}
 
   @Get()
   async listTodos(): Promise<TodoRestDTO[]> {
-    const todos = await this.listTodosUseCase.execute()
+    const todos = await this.listTodosUseCase.execute();
 
-    return todos.map(this.todoMapper.toDTOFromEntity)
+    return todos.map(todoMapper.toRestDTOFromDomain);
   }
 
   @Post()
   @HttpCode(201)
   async createTodo(@Body() body: CreateTodoDto): Promise<TodoRestDTO> {
-    const result = await this.createTodoUseCase.execute({ title: body.title })
+    const result = await this.createTodoUseCase.execute({ title: body.title });
     return result.fold(
-      todDomain => this.todoMapper.toDTOFromEntity(todDomain),
+      todDomain => todoMapper.toRestDTOFromDomain(todDomain),
       error => Promise.reject(error.message),
-    )
+    );
   }
 }

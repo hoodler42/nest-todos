@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="WS-251.26927.40">
+  <component name="dataSourceStorageLocal" created-in="WS-252.23892.411">
     <data-source name="Local" uuid="377885e3-2990-419c-b009-20d6144f7e17">
-      <database-info product="PostgreSQL" version="16.3" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.6.0" dbms="POSTGRES" exact-version="16.3" exact-driver-version="42.6">
+      <database-info product="PostgreSQL" version="16.3" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.7.3" dbms="POSTGRES" exact-version="16.3" exact-driver-version="42.7">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
@@ -10,10 +10,13 @@
       <user-name>admin</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="database">
-            <name qname="todos" />
-            <name qname="todos-test" />
-            <node kind="schema" qname="@" />
+          <node negative="1">
+            <node kind="database" qname="@">
+              <node kind="schema" qname="@" />
+            </node>
+            <node kind="database" qname="nest_todos">
+              <node kind="schema" qname="public" />
+            </node>
           </node>
         </introspection-scope>
       </schema-mapping>

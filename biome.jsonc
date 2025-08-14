@@ -8,7 +8,7 @@
     }
   },
   "files": {
-    "includes": ["**", "!**/*.sdk.ts", "!**/package.json"]
+    "includes": ["**", "!**/*.sdk.ts", "!**/package.json", "!**/models.d.ts"]
   },
   "formatter": {
     "attributePosition": "auto",
@@ -28,7 +28,7 @@
       "jsxQuoteStyle": "double",
       "quoteProperties": "asNeeded",
       "quoteStyle": "double",
-      "semicolons": "asNeeded",
+      "semicolons": "always",
       "trailingCommas": "all"
     },
     "parser": {

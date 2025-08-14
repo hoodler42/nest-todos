@@ -5,11 +5,11 @@
 - [x] All tests with Cucumber
 - [x] Nest modules
 - [x] DDH
-- [x] Prisma / TypeORM
+- [ ] Prisma + Kysely
 - [x] Codegen ORM
 - [x] GQL
 - [x] Codegen GQL
-- [ ] Test strategy
+- [x] Test strategy
 - [ ] Transactions / UnitOfWork
 - [ ] Domain Events
 - [ ] ES & projections

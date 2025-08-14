@@ -18,7 +18,7 @@
 .yarn
 
 # Env files
-.env.dev
+.env
 .env.test
 
 # Codegen

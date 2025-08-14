@@ -1,5 +1,5 @@
 import { ObjectType } from "@nestjs/graphql";
-import { TodoGQL } from "../dto/todo.graphql.js";
+import { TodoGqlDTO } from "../dto/todo.graphql.dto.js";
 
 @ObjectType()
-export class CreateTodoSuccess extends TodoGQL {}
+export class CreateTodoSuccess extends TodoGqlDTO {}

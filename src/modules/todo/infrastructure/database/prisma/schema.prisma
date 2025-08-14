@@ -1,0 +1,26 @@
+generator kysely {
+  provider     = "prisma-kysely"
+  output       = "../../adapters/repositories/kysely"
+  fileName     = "models.d.ts"
+  enumFileName = "enums.d.ts"
+  camelCase    = true
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model migrations {
+  id        Int    @id @default(autoincrement())
+  timestamp BigInt
+  name      String @db.VarChar
+}
+
+model todo {
+  id           String   @id
+  title        String
+  is_completed Boolean  @default(false)
+  created_at   DateTime @default(now())
+  updated_at   DateTime @default(now())
+}
