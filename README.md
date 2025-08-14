@@ -1,5 +1,3 @@
-VITEST ^0.34.6
-
 ## Description
 
 Build a service to manage Todos.
