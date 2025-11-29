@@ -5,13 +5,13 @@ import { TodoApplicationModule } from "../../../core/application/todo.applicatio
 import { TodoResolver } from "./todo.resolver.js";
 
 @Module({
-  imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      autoSchemaFile: true,
-      driver: ApolloDriver,
-    }),
-    TodoApplicationModule,
-  ],
-  providers: [TodoResolver],
+    imports: [
+        GraphQLModule.forRoot<ApolloDriverConfig>({
+            autoSchemaFile: true,
+            driver: ApolloDriver,
+        }),
+        TodoApplicationModule,
+    ],
+    providers: [TodoResolver],
 })
 export class TodoGraphqlModule {}

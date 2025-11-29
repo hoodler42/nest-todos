@@ -7,25 +7,25 @@ import type { TodoRestDTO } from "./dto/output/todo.rest.dto.js";
 
 @Controller("todos")
 export class TodoController {
-  constructor(
-    @Inject(ListTodosUseCase) private readonly listTodosUseCase: ListTodosUseCase,
-    @Inject(CreateTodoUseCase) private readonly createTodoUseCase: CreateTodoUseCase,
-  ) {}
+    constructor(
+        @Inject(ListTodosUseCase) private readonly listTodosUseCase: ListTodosUseCase,
+        @Inject(CreateTodoUseCase) private readonly createTodoUseCase: CreateTodoUseCase,
+    ) {}
 
-  @Get()
-  async listTodos(): Promise<TodoRestDTO[]> {
-    const todos = await this.listTodosUseCase.execute();
+    @Get()
+    async listTodos(): Promise<TodoRestDTO[]> {
+        const todos = await this.listTodosUseCase.execute();
 
-    return todos.map(todoMapper.toRestDTOFromDomain);
-  }
+        return todos.map(todoMapper.toRestDTOFromDomain);
+    }
 
-  @Post()
-  @HttpCode(201)
-  async createTodo(@Body() body: CreateTodoDto): Promise<TodoRestDTO> {
-    const result = await this.createTodoUseCase.execute({ title: body.title });
-    return result.fold(
-      todDomain => todoMapper.toRestDTOFromDomain(todDomain),
-      error => Promise.reject(error.message),
-    );
-  }
+    @Post()
+    @HttpCode(201)
+    async createTodo(@Body() body: CreateTodoDto): Promise<TodoRestDTO> {
+        const result = await this.createTodoUseCase.execute({ title: body.title });
+        return result.fold(
+            todDomain => todoMapper.toRestDTOFromDomain(todDomain),
+            error => Promise.reject(error.message),
+        );
+    }
 }

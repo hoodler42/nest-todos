@@ -1,8 +1,8 @@
 generator kysely {
   provider     = "prisma-kysely"
-  output       = "../../adapters/repositories/kysely"
-  fileName     = "models.d.ts"
-  enumFileName = "enums.d.ts"
+  output       = "../kysely/"
+  fileName     = "models.kysely.d.ts"
+  enumFileName = "enums.kysely.d.ts"
   camelCase    = true
 }
 

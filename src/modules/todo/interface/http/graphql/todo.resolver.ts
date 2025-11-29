@@ -8,37 +8,37 @@ import { CreateTodoSuccess } from "./payloads/create-todo-success.payload.js";
 import { InvalidTodoRejection } from "./rejections/invalid-todo.rejection.js";
 
 const CreateTodoPayload = createUnionType({
-  name: "CreateTodoPayload",
-  types: () => [CreateTodoSuccess, InvalidTodoRejection] as const,
-  resolveType: value => {
-    if (value instanceof InvalidTodoRejection) {
-      return InvalidTodoRejection;
-    }
-    return CreateTodoSuccess;
-  },
+    name: "CreateTodoPayload",
+    types: () => [CreateTodoSuccess, InvalidTodoRejection] as const,
+    resolveType: value => {
+        if (value instanceof InvalidTodoRejection) {
+            return InvalidTodoRejection;
+        }
+        return CreateTodoSuccess;
+    },
 });
 
 @Resolver("Todo")
 export class TodoResolver {
-  constructor(
-    @Inject(ListTodosUseCase) private readonly listTodosUseCase: ListTodosUseCase,
-    @Inject(CreateTodoUseCase) private readonly createTodoUseCase: CreateTodoUseCase,
-  ) {}
+    constructor(
+        @Inject(ListTodosUseCase) private readonly listTodosUseCase: ListTodosUseCase,
+        @Inject(CreateTodoUseCase) private readonly createTodoUseCase: CreateTodoUseCase,
+    ) {}
 
-  @Query(() => [TodoGqlDTO])
-  async listTodos(): Promise<TodoGqlDTO[]> {
-    const todos = await this.listTodosUseCase.execute();
+    @Query(() => [TodoGqlDTO])
+    async listTodos(): Promise<TodoGqlDTO[]> {
+        const todos = await this.listTodosUseCase.execute();
 
-    return todos.map(todoMapper.toGqlDTOFromDomain);
-  }
+        return todos.map(todoMapper.toGqlDTOFromDomain);
+    }
 
-  @Mutation(() => CreateTodoPayload)
-  async createTodo(@Args("title") title: string): Promise<typeof CreateTodoPayload> {
-    const result = await this.createTodoUseCase.execute({ title });
+    @Mutation(() => CreateTodoPayload)
+    async createTodo(@Args("title") title: string): Promise<typeof CreateTodoPayload> {
+        const result = await this.createTodoUseCase.execute({ title });
 
-    return result.fold(
-      todoDomain => todoMapper.toGqlDTOFromDomain(todoDomain),
-      error => new InvalidTodoRejection(error),
-    );
-  }
+        return result.fold(
+            todoDomain => todoMapper.toGqlDTOFromDomain(todoDomain),
+            error => new InvalidTodoRejection(error),
+        );
+    }
 }

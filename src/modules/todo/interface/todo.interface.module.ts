@@ -1,7 +1,7 @@
-import { Module } from "@nestjs/common"
-import { TodoHttpModule } from "./http/todo.http.module.js"
+import { Module } from "@nestjs/common";
+import { TodoHttpModule } from "./http/todo.http.module.js";
 
 @Module({
-  imports: [TodoHttpModule],
+    imports: [TodoHttpModule],
 })
 export class TodoInterfaceModule {}

@@ -3,7 +3,7 @@ import { TodoApplicationModule } from "../../../core/application/todo.applicatio
 import { TodoController } from "./todo.controller.js";
 
 @Module({
-  controllers: [TodoController],
-  imports: [TodoApplicationModule],
+    controllers: [TodoController],
+    imports: [TodoApplicationModule],
 })
 export class TodoRestModule {}

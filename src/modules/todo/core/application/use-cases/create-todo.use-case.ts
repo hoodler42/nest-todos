@@ -2,9 +2,12 @@ import { Inject } from "@nestjs/common";
 import { Result } from "typescript-result";
 
 import { TodoEntity } from "../../domain/entities/todo.entity.js";
-import { InvalidTodoError } from "../errors/invalid-todo.error.js";
+import type { InvalidTodoError } from "../../domain/errors/invalid-todo.error.js";
 import { ID_GENERATOR_TOKEN, type IdGenerator } from "../ports/id-generator/id-generator.js";
-import { TodoRepository } from "../ports/repositories/todo.repository.js";
+import {
+    type TodoRepository,
+    TODO_REPOSITORY_TOKEN,
+} from "../ports/repositories/todo.repository.js";
 
 export interface CreateTodoUseCasePort {
     title: string;
@@ -13,7 +16,7 @@ export interface CreateTodoUseCasePort {
 export class CreateTodoUseCase {
     constructor(
         @Inject(ID_GENERATOR_TOKEN) private readonly idGenerator: IdGenerator,
-        @Inject(TodoRepository) private readonly todoRepository: TodoRepository,
+        @Inject(TODO_REPOSITORY_TOKEN) private readonly todoRepository: TodoRepository,
     ) {}
 
     async execute({ title }: CreateTodoUseCasePort): Promise<Result<TodoEntity, InvalidTodoError>> {
@@ -24,12 +27,11 @@ export class CreateTodoUseCase {
         return result.fold(
             async createdTodo => {
                 const result = await this.todoRepository.insertOne(createdTodo);
-                return result.fold(
-                    () => Result.ok(createdTodo),
-                    Result.error,
+                return result.map(
+                    () => createdTodo,
                 );
             },
-            Result.error,
+            error => Result.error(error),
         );
     }
 }

@@ -1,55 +1,49 @@
-import { IsBoolean, IsString } from "class-validator";
 import { Result } from "typescript-result";
-import { Entity } from "../../../../../lib/data-objects/entity.js";
-import { InvalidTodoError } from "../../application/errors/invalid-todo.error.js";
+import { Entity, type EntityProps } from "../../../../../lib/data-objects/entity.js";
+import { InvalidTodoError } from "../errors/invalid-todo.error.js";
+import { z } from "zod";
 
-export class TodoProps {
-  @IsString()
-  title!: string
+const todoPropsSchema = z.object({
+    title: z.string()
+        .min(6, "Title must be at least 6 characters long")
+        .max(100, "Title must be at most 100 characters long")
+        .trim()
+        .refine(title => !title.includes("Error"), {
+            message: "Title cannot contain the word 'Error'",
+        }),
+    isCompleted: z.boolean(),
+});
+type TodoEntityProps = EntityProps & z.infer<typeof todoPropsSchema>;
 
-  @IsBoolean()
-  isCompleted!: boolean
-}
+export class TodoEntity extends Entity {
+    public readonly title: string;
+    public readonly isCompleted: boolean;
 
-export class TodoEntity extends Entity<TodoProps> {
-  public get title() {
-    return this.props.title
-  }
-
-  public get isCompleted() {
-    return this.props.isCompleted
-  }
-
-  public static create(createTodoProps: Pick<TodoEntity, "id" | "title">): Result<TodoEntity, InvalidTodoError> {
-    const newTodo = new TodoEntity({
-      id: createTodoProps.id,
-      props: { isCompleted: false, title: createTodoProps.title },
-    })
-
-    return newTodo.validateEntityProps().fold(
-      () => Result.ok(newTodo),
-      error => Result.error(error),
-    )
-  }
-
-  protected override validateEntityProps(): Result<void, InvalidTodoError> {
-    const titleValidationResult = this.validateTitle()
-    if (titleValidationResult.isError()) {
-      return Result.error(titleValidationResult.error)
+    private constructor(props: TodoEntityProps) {
+        super(props.id, props.createdAt, props.updatedAt);
+        this.title = props.title;
+        this.isCompleted = props.isCompleted;
     }
-    return Result.ok()
-  }
 
-  private validateTitle(): Result<void, InvalidTodoError> {
-    if (this.title.length < 6) {
-      return Result.error(new InvalidTodoError("Title must be at least 6 characters long"))
+    public static create(createTodoPayload: Pick<TodoEntity, "id" | "title">): Result<TodoEntity, InvalidTodoError> {
+        return Entity.build(
+            () => new TodoEntity({
+                id: createTodoPayload.id,
+                title: createTodoPayload.title,
+                isCompleted: false,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            }),
+            todoPropsSchema,
+            (message) => new InvalidTodoError(message),
+        );
     }
-    if (this.title.length > 100) {
-      return Result.error(new InvalidTodoError("Title must be at most 100 characters long"))
+
+    public static fromPersistence(props: TodoEntityProps): Result<TodoEntity, InvalidTodoError> {
+        return Entity.build(
+            () => new TodoEntity(props),
+            todoPropsSchema,
+            (message) => new InvalidTodoError(message),
+        );
     }
-    if (this.title.includes("Error")) {
-      return Result.error(new InvalidTodoError("Title cannot contain the word 'Error'"))
-    }
-    return Result.ok()
-  }
 }

@@ -1,14 +1,14 @@
-import { IsBoolean, IsString, IsUUID } from "class-validator"
-import type { TodoDTO } from "../../../../dto/todo.dto.js"
+import { IsBoolean, IsString, IsUUID } from "class-validator";
+import type { TodoDTO } from "../../../../dto/todo.dto.js";
 
 export class TodoRestDTO implements TodoDTO {
-  @IsString()
-  @IsUUID()
-  id!: string
+    @IsString()
+    @IsUUID()
+    id!: string;
 
-  @IsString()
-  title!: string
+    @IsString()
+    title!: string;
 
-  @IsBoolean()
-  isCompleted!: boolean
+    @IsBoolean()
+    isCompleted!: boolean;
 }

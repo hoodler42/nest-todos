@@ -1,10 +1,23 @@
-import { Module } from "@nestjs/common";
+import { Module, type Provider } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { CamelCasePlugin, PostgresDialect } from "kysely";
 import { KyselyModule } from "nestjs-kysely";
 import { Pool } from "pg";
 
+import {
+    TODO_REPOSITORY_TOKEN,
+} from "../../core/application/ports/repositories/todo.repository.js";
+import { TodoRepositoryKysely } from "./kysely/repositories/todo.repository.kysely.js";
+
+const repositories: Provider[] = [
+    {
+        provide: TODO_REPOSITORY_TOKEN,
+        useClass: TodoRepositoryKysely,
+    },
+];
+
 @Module({
+    exports: repositories,
     imports: [
         KyselyModule.forRootAsync({
             imports: [ConfigModule],
@@ -28,5 +41,6 @@ import { Pool } from "pg";
             ),
         }),
     ],
+    providers: repositories,
 })
-export class TodoDatabaseModule {}
+export class TodoPersistenceModule {}

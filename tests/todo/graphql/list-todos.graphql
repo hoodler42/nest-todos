@@ -1,8 +1,8 @@
 query listTodos {
-  listTodos {
-    __typename
-    id
-    title
-    isCompleted
-  }
+    listTodos {
+        __typename
+        id
+        title
+        isCompleted
+    }
 }

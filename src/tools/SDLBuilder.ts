@@ -7,7 +7,7 @@ import { lexicographicSortSchema, printSchema } from "graphql/utilities/index.js
 import { TodoResolver } from "../modules/todo/interface/http/graphql/todo.resolver.js";
 
 const app = await NestFactory.createApplicationContext(GraphQLSchemaBuilderModule, {
-  logger: false,
+    logger: false,
 });
 await app.init();
 
@@ -17,20 +17,23 @@ app.useLogger(logger);
 const gqlSchemaFactory = app.get(GraphQLSchemaFactory);
 
 const resolversByService: { [key: string]: Function[] } = {
-  todo: [TodoResolver],
+    todo: [TodoResolver],
 };
 
 logger.log("Generating SDLs...");
 for (const [serviceName, resolvers] of Object.entries(resolversByService)) {
-  logger.log(`Generating SDL for "${serviceName}" service`);
+    logger.log(`Generating SDL for "${serviceName}" service`);
 
-  const schema = await gqlSchemaFactory.create(resolvers);
-  fs.writeFileSync(
-    path.join(process.cwd(), `src/modules/${serviceName}/interface/http/graphql/${serviceName}.schema.graphql`),
-    printSchema(lexicographicSortSchema(schema)),
-  );
+    const schema = await gqlSchemaFactory.create(resolvers);
+    fs.writeFileSync(
+        path.join(
+            process.cwd(),
+            `src/modules/${serviceName}/interface/http/graphql/${serviceName}.schema.graphql`,
+        ),
+        printSchema(lexicographicSortSchema(schema)),
+    );
 
-  logger.log(`SDL generated for "${serviceName}" service`);
+    logger.log(`SDL generated for "${serviceName}" service`);
 }
 logger.log("SDLs successfully generated");
 

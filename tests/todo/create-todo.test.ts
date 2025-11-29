@@ -7,16 +7,14 @@ import { KYSELY_MODULE_CONNECTION_TOKEN } from "nestjs-kysely";
 import { ConfigService } from "@nestjs/config";
 
 import {
-    givenInvalidTitle,
     givenValidTitle,
+    givenInvalidTitle,
 } from "../../src/modules/todo/core/domain/entities/todo.givens.js";
-import type {
-    DB,
-} from "../../src/modules/todo/infrastructure/adapters/repositories/kysely/models.js";
 import { TodoModule } from "../../src/modules/todo/todo.module.js";
 import { type CreateTodoMutation, getSdk, type Sdk } from "./graphql/todo.sdk.js";
 import { prepareKyselyPGLiteTestDatabase } from "../utils/prepare-test-database.js";
 import type { EnvSchema } from "../../src/env.validation.js";
+import type { DB } from "../../src/modules/todo/infrastructure/persistence/kysely/models.kysely.js";
 
 let testDataBase: Kysely<DB>;
 let app: INestApplication;
@@ -79,6 +77,7 @@ describe("Scenario: Create a todo", () => {
 
             test("Then the todo is persisted in database", async () => {
                 await gqlPromise;
+
                 const persistedTodo = await testDataBase
                     .selectFrom("todo")
                     .selectAll()
@@ -109,6 +108,7 @@ describe("Scenario: Create a todo", () => {
 
             test("Then the todo is not persisted", async () => {
                 await gqlPromise;
+
                 const persistedTodo = await testDataBase
                     .selectFrom("todo")
                     .selectAll()

@@ -9,9 +9,7 @@ import {
     sql,
 } from "kysely";
 import { KyselyPGlite } from "kysely-pglite";
-import type {
-    DB,
-} from "../../src/modules/todo/infrastructure/adapters/repositories/kysely/models.js";
+import type { DB } from "../../src/modules/todo/infrastructure/persistence/kysely/models.kysely.js";
 
 function splitSqlCommand(sqlCommand: string): string[] {
     return sqlCommand
@@ -20,8 +18,7 @@ function splitSqlCommand(sqlCommand: string): string[] {
         .filter(command => command);
 }
 
-class PrismaMigrationProvider
-    implements MigrationProvider {
+class PrismaMigrationProvider implements MigrationProvider {
     constructor(private readonly migrationFolder: string) {}
 
     async getMigrations(): Promise<Record<string, Migration>> {
@@ -66,7 +63,7 @@ export async function prepareKyselyPGLiteTestDatabase(): Promise<Kysely<DB>> {
     });
 
     const migrationFolder = path.join(
-        __dirname, "../../src/modules/todo/infrastructure/database/prisma/migrations");
+        __dirname, "../../src/modules/todo/infrastructure/persistence/prisma/migrations");
     const migrator = new Migrator({
         db: testDataBase,
         provider: new PrismaMigrationProvider(migrationFolder),

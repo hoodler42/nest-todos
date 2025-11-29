@@ -1,38 +1,34 @@
-import { IsDate, IsString, IsUUID } from "class-validator";
-import { ValueObject } from "./value-object.js";
+import { Result } from "typescript-result";
+import { z } from "zod";
 
-export class InstantiateEntityProps<T> {
-    @IsString()
-    @IsUUID()
-    id!: string;
+const entitySchema = z.object({
+    id: z.uuid(),
+    createdAt: z.date(),
+    updatedAt: z.date(),
+});
+export type EntityProps = z.infer<typeof entitySchema>;
 
-    @IsDate()
-    createdAt?: Date;
+export abstract class Entity implements EntityProps {
+    protected constructor(
+        public readonly id: string,
+        public readonly createdAt: Date,
+        public readonly updatedAt: Date,
+    ) {}
 
-    @IsDate()
-    updatedAt?: Date;
+    protected static build<T extends Entity, E extends Error>(
+        factory: () => T,
+        schema: z.ZodObject<any>,
+        errorFactory: (message: string) => E,
+    ): Result<T, E> {
+        const instance = factory();
+        const fullSchema = entitySchema.extend(schema.shape);
+        const result = fullSchema.safeParse(instance);
 
-    props!: T;
-}
+        if (!result.success) {
+            const message = result.error.issues.map(issue => issue.message).join(", ");
+            return Result.error(errorFactory(message)) as Result<T, E>;
+        }
 
-export abstract class Entity<EntityProps> extends ValueObject<EntityProps> {
-    public readonly id: string;
-    public readonly createdAt: Date;
-    public readonly updatedAt: Date;
-
-    constructor({ id, createdAt, updatedAt, props }: InstantiateEntityProps<EntityProps>) {
-        super(props);
-        this.id = id;
-        const now = new Date();
-        this.createdAt = createdAt || now;
-        this.updatedAt = updatedAt || now;
-        this.validateProps();
-    }
-
-    protected abstract validateEntityProps(): void
-
-    protected validateProps() {
-        // validate id and dates
-        this.validateEntityProps();
+        return Result.ok(instance) as Result<T, E>;
     }
 }

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GhostTextManager">
+    <option name="inputs">
+      <map>
+        <entry key="@&lt;file_name&gt; &#10;&#10;Do you understand what I'm trying to achieve with these two files?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1760774846263" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="About the errors, what would be the difference between an Application error and a Domain error?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1761904181539" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Ah I see, we have to throw in the abstract class, we can't make it return a Result?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764370080876" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Check the files because there are a lot of TS errors">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="3.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1760864572040" />
+                  <option value="1760777222281" />
+                  <option value="1760777093643" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Check the files because there are a lot of TS errors:">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1760864623765" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="For the following code:&#10;```&#10;        }&#10;        return Result.ok(instance);&#10;    }&#10;```&#10;We have the error: TypeScript-Go: Type 'Ok&lt;T&gt;' is not assignable to type 'Result&lt;T, ZodError&lt;unknown&gt;&gt;'.&#10;  Type 'Result$1&lt;T, never&gt;' is not assignable to type 'Error&lt;ZodError&lt;unknown&gt;&gt;'.&#10;    Type 'T' is not assignable to type 'never'.&#10;      Type 'Entity' is not assignable to type 'never'.&#10;Please fix this. If needed, you can use the get_errors tool on this file.">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1760867264803" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="I see, so to have a purist approach, I would only need to update my modules, not my TypeScript files?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1761903967341" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="I understand. So the fact that my TodoApplicationModule is importing the TodoInfrastructureModule is not a breach? This is understandable since it's a technical detail (NestJS), right? As long as the UseCase or Entities do not import infrastructure files directly?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1761903793588" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="I would like to avoid having a `props` property.&#10;&#10;Ideally, I'd like every property to be public, even the ones inherited from Entity">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="2.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1760775290189" />
+                  <option value="1760775277421" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="I would like your help on my abstract class Entity. The goal is to be able to represent an entity by extending it. I want an entity to be automatically validated when instantiated without specifying it in the implementation class (TodoEntity here for example). I tried something as you can see but it seems fishy. Can you propose another solution?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764369643447" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Is there a way to define the zod schema and rely on it so that the class knows what are its properties?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1760774938638" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="It seems as error-prone as my approach. You still need to call Entity.createAndValidate. I would like the validation to happen during the instantiation of the TodoEntity. Do you think it's possible?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764369903226" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Taking this LinkedIn post (in French), is it true that Infrastructure should depends on Domain and not the other way around?&#10;&#10;Is my app's infra depending on domain or the other way around? If yes, how can I fix this?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1761903402494" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Taking this LinkedIn post (in French), is it true that Infrastructure should depends on Domain and not the other way around?&#10;&#10;Is my app's infra depending on domain or the other way around? If yes, how can I fix this?&#10;&#10;&quot;&#10;Un dev fait de la &quot;Clean Architecture&quot;.&#10;Toutes ses classes dépendent de tout.&#10;&#10;La Clean Architecture est devenue un buzzword.&#10;&#10;Tout le monde prétend en faire.&#10;&#10;Presque personne ne la fait vraiment.&#10;&#10;Cette semaine, je review un projet &quot;Clean Architecture&quot;.&#10;&#10;Organisation impeccable :&#10;→ domain/&#10;→ application/&#10;→ infrastructure/&#10;&#10;Le problème ?&#10;&#10;Domain qui importe l'infra.&#10;Use cases qui appellent la BDD directement.&#10;Controllers couplés à tout (changement = casse tout).&#10;Impossible de tester sans tout monter.&#10;&#10;Ce n'est pas de la Clean Architecture.&#10;&#10;C'est juste une organisation de dossiers.&#10;&#10;La Clean Architecture, ce n'est pas une question de structure de fichiers.&#10;&#10;C'est une question de dépendances.&#10;&#10;Les 3 règles non négociables :&#10;&#10;→ Domain = zéro dépendance externe&#10;→ Infrastructure dépend du domain (pas l'inverse)&#10;→ Changer de framework sans toucher le métier&#10;&#10;Les vrais signaux :&#10;&#10;→ Tu peux remplacer PostgreSQL par MongoDB sans toucher le domain&#10;→ Tu peux tester ton métier sans base de données&#10;→ Tes entités ne connaissent ni Spring, ni Hibernate, ni Express&#10;&#10;Si tu ne peux pas faire ça, tu n'es pas en Clean Architecture.&#10;&#10;Ce que ça coûte vraiment :&#10;&#10;→ Changement de BDD = 3 mois de refonte&#10;→ Migration framework = réécriture complète&#10;→ Tests impossibles sans infra&#10;→ Dette technique qui explose à chaque évolution&#10;&#10;Ce que j'observe chez 90% des projets &quot;Clean Architecture&quot; :&#10;&#10;Domain couplé à l'infra.&#10;Use cases qui font du SQL direct.&#10;Impossible de tester unitairement.&#10;Changement de BDD = tout recommencer.&#10;&#10;La Clean Architecture ne se résume pas à copier une structure de dossiers depuis un tuto YouTube.&#10;&#10;C'est comprendre et respecter le principe d'inversion de dépendance.&#10;&#10;Le test ultime :&#10;&#10;Peux-tu tester ton domain sans aucune dépendance externe ?&#10;&#10;Si la réponse est non, tu ne fais pas de Clean Architecture.&#10;&#10;Tu as les dossiers. Pas l'architecture.&#10;&#10;Votre &quot;Clean Architecture&quot; tient sans sa base de données ?&#10;&quot;">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1761903414097" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="The current approach is not working. I'll try to explain what I want and you can tell me if it's possible. If yes, you'll do it.&#10;&#10;I want an abstract class Entity that will have some properties common to every class inhereting this class (childs).&#10;&#10;I want their constructor to be private (or protected), I should not be able to instantiate an Entity using `new`, only static factory functions.&#10;&#10;I want each child to define its own zod schema.&#10;&#10;I want the Entity class to have a private method `validate` that will be called every time a new instance is created (so maybe in the constructor ?) but the child should not be really aware of it, I should not have to think about calling `validate` in each child, only to define the Zod schema that will be used to validate.&#10;&#10;Altough, each factory method will need to return a Result since the validation can fail.">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1760776688658" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="With the current code, can you fix `toDomainFromModel`?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764372423234" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="With the current implementation, can you fix the toDomainFromModel method?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764372397000" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="fix the edge case in calculate_average (it's a temp file)">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1758451476473" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
