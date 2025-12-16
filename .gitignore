@@ -14,9 +14,6 @@
 # Database
 /pgsql
 
-# Dependency manager
-.yarn
-
 # Env files
 .env.dev
 .env.test
@@ -24,3 +21,8 @@
 # Codegen
 *.sdk.ts
 *.schema.graphql
+*.models.*.d.ts
+
+# Custom AI Agents
+SWEEP.md
+.idea/SweepConfig.xml

@@ -11,11 +11,11 @@ CREATE TABLE "migrations"
 -- CreateTable
 CREATE TABLE "todo"
 (
-    "id"           TEXT         NOT NULL,
-    "title"        TEXT         NOT NULL,
-    "is_completed" BOOLEAN      NOT NULL DEFAULT false,
-    "created_at"   TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at"   TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "id"         TEXT         NOT NULL,
+    "title"      TEXT         NOT NULL,
+    "is_done"    BOOLEAN      NOT NULL DEFAULT false,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "todo_pkey" PRIMARY KEY ("id")
 );

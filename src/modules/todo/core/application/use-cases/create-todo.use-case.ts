@@ -1,37 +1,31 @@
-import { Inject } from "@nestjs/common";
-import { Result } from "typescript-result";
+import { Effect } from "effect";
 
 import { TodoEntity } from "../../domain/entities/todo.entity.js";
 import type { InvalidTodoError } from "../../domain/errors/invalid-todo.error.js";
-import { ID_GENERATOR_TOKEN, type IdGenerator } from "../ports/id-generator/id-generator.js";
-import {
-    type TodoRepository,
-    TODO_REPOSITORY_TOKEN,
-} from "../ports/repositories/todo.repository.js";
+import { IdGenerator } from "../ports/id-generator.js";
+import { TodoRepository } from "../ports/todo.repository.js";
 
-export interface CreateTodoUseCasePort {
-    title: string;
-}
+export namespace CreateTodoUseCase {
+  export type Input = {
+    readonly title: string;
+  };
 
-export class CreateTodoUseCase {
-    constructor(
-        @Inject(ID_GENERATOR_TOKEN) private readonly idGenerator: IdGenerator,
-        @Inject(TODO_REPOSITORY_TOKEN) private readonly todoRepository: TodoRepository,
-    ) {}
+  export type Output = Effect.Effect<
+    TodoEntity,
+    InvalidTodoError | Error,
+    IdGenerator | TodoRepository
+  >;
 
-    async execute({ title }: CreateTodoUseCasePort): Promise<Result<TodoEntity, InvalidTodoError>> {
-        const id = this.idGenerator.generate();
+  export const execute = (input: CreateTodoUseCase.Input): CreateTodoUseCase.Output =>
+    Effect.gen(function* () {
+      const idGenerator = yield* IdGenerator;
+      const todoRepository = yield* TodoRepository;
 
-        const result = TodoEntity.create({ id, title });
+      const id = idGenerator.generate();
+      const todo = yield* TodoEntity.create({ id, title: input.title });
 
-        return result.fold(
-            async createdTodo => {
-                const result = await this.todoRepository.insertOne(createdTodo);
-                return result.map(
-                    () => createdTodo,
-                );
-            },
-            error => Result.error(error),
-        );
-    }
+      yield* todoRepository.insertOne(todo);
+
+      return todo;
+    });
 }

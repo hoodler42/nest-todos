@@ -3,6 +3,6 @@ query listTodos {
         __typename
         id
         title
-        isCompleted
+        isDone
     }
 }

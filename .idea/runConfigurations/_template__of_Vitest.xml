@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="true" type="JavaScriptTestRunnerVitest">
-    <config value="$PROJECT_DIR$/config/vitest.config.ts" />
+    <config value="$PROJECT_DIR$/.config/vitest.config.ts" />
     <node-interpreter value="project" />
     <vitest-options value="--run" />
     <envs>

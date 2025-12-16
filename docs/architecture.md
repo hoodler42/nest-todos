@@ -11,7 +11,7 @@ Let's dig in the layers going from the most inner to most outward:
 
 #### Entities
 
-Entities are the purest form of the domain logic. They should aim to be pure Typescript without any dependencies.
+Entities are the purest form of the domain logic. They should aim to be pure TypeScript without any dependencies.
 They should mirror a real life object or a concept.
 
 #### Domain services
@@ -54,10 +54,12 @@ Dependency.
 What it means is that you will not depend on an implementation but on an abstraction.
 Let's take an example: you have a use case where you want to get the distance between a user, and a place he wants to
 go.
-You can take the GMaps API to achieve this. The problem is that if you put the GMaps logic in your domain logic, it will
+You can take the Google Maps API to achieve this. The problem is that if you put the Google Maps logic in your domain
+logic, it will
 no longer be only your domain.
-Imagine for a sec GMaps increases its pricing, and you can no longer afford it.
-You find a cheaper alternative, but you look at your code only to realise that each use case have GMaps logic inside it.
+Imagine for a sec Google Maps increases its pricing, and you can no longer afford it.
+You find a cheaper alternative, but you look at your code only to realize that each use case have Google Maps logic
+inside it.
 To migrate, you have to dig your use cases and know what is your domain's logic and what is GMap's.
 
 With ports and adapters, you use case will not need to change a bit.
@@ -66,8 +68,9 @@ The way to do this is to create an interface **(not related to the layer)** and 
 You define in the interface what your use case sends to the "Geo API" as well as what it should return.
 Make your business logic based on that and voilà.
 Once this is done, you can create the implementation (adapter) of your abstraction (interface).
-In our case, the first adapter will be the "Geo GMaps API" and when GMaps is no longer affordable, you create a new
-implementation "Geo Alternative API". Instead of injecting the GMaps implementation you just need to inject the
+In our case, the first adapter will be the "Geo Google Maps API" and when Google Maps is no longer affordable, you
+create a new
+implementation "Geo Alternative API". Instead of injecting the Google Maps implementation you just need to inject the
 "Alternative" one!
 
 ## Folders
@@ -84,7 +87,7 @@ about: [interface](), [infrastructure](), [domain]().
 ### Interface
 
 In here you will find the interfaces the domain uses. It can be HTTP, WebSocket, CLIs, Event Listener, etc.
-In each one you will also find a "DTO" folder which is kind of a helper to map entities going in to the one used in the
+In each one you will also find a "DTO" folder, a kind of helper to map entities going in to the one used in the
 domain.
 
 ### Infrastructure

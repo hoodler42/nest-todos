@@ -2,7 +2,9 @@ onlyBuiltDependencies:
   - '@apollo/protobufjs'
   - '@biomejs/biome'
   - '@nestjs/core'
+  - '@parcel/watcher'
   - '@prisma/engines'
   - '@swc/core'
   - esbuild
+  - msgpackr-extract
   - prisma

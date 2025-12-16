@@ -1,40 +1,36 @@
-import type {
-    InsertQueryBuilder,
-    InsertResult,
-    Kysely,
-    SelectQueryBuilder,
-    NoResultError,
-} from "kysely";
-import { InjectKysely } from "nestjs-kysely";
-import { Result } from "typescript-result";
-
-import type {
-    TodoRepository,
-} from "../../../../core/application/ports/repositories/todo.repository.js";
+import { Effect, Layer } from "effect";
+import type { Kysely } from "kysely";
+import { TodoRepository } from "../../../../core/application/ports/todo.repository.js";
 import type { TodoEntity } from "../../../../core/domain/entities/todo.entity.js";
 import { todoMapper } from "../../../../todo.mapper.js";
-import type { DB } from "../models.kysely.js";
+import { KyselyConnection } from "../kysely.service.js";
+import type { DB } from "../todo.models.kysely.js";
 
-export class TodoRepositoryKysely implements TodoRepository {
-    private readonly selectTodoDB: SelectQueryBuilder<DB, "todo", unknown>;
-    private readonly insertTodoDB: InsertQueryBuilder<DB, "todo", InsertResult>;
-
-    constructor(@InjectKysely() private readonly db: Kysely<DB>) {
-        this.selectTodoDB = this.db.selectFrom("todo");
-        this.insertTodoDB = this.db.insertInto("todo");
-    }
-
-    public async insertOne(todoDomain: TodoEntity): Promise<Result<void, NoResultError>> {
+const makeTodoRepositoryKysely = (db: Kysely<DB>): TodoRepository => ({
+  insertOne: (todoDomain: TodoEntity) =>
+    Effect.tryPromise({
+      try: async () => {
         const todoModel = todoMapper.toModelFromDomain(todoDomain);
+        await db.insertInto("todo").values(todoModel).executeTakeFirstOrThrow();
+      },
+      catch: error => new Error(`Failed to insert todo: ${error}`),
+    }),
+  findAll: () =>
+    Effect.gen(function* () {
+      const todoModels = yield* Effect.tryPromise({
+        try: () => db.selectFrom("todo").selectAll().execute(),
+        catch: error => new Error(`Failed to fetch todos: ${error}`),
+      });
 
-        await this.insertTodoDB.values(todoModel).executeTakeFirstOrThrow().catch(Result.error);
+      const todosEffect = todoModels.map(todoMapper.toDomainFromModel);
+      return yield* Effect.all(todosEffect);
+    }),
+});
 
-        return Result.ok();
-    }
-
-    public async findAll(): Promise<TodoEntity[]> {
-        const todoModels = await this.selectTodoDB.selectAll().execute();
-
-        return todoModels.map(todoMapper.toDomainFromModel);
-    }
-}
+export const TodoRepositoryKysely = Layer.effect(
+  TodoRepository,
+  Effect.gen(function* () {
+    const db = yield* KyselyConnection;
+    return makeTodoRepositoryKysely(db);
+  }),
+);

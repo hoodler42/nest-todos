@@ -1,13 +1,15 @@
 mutation createTodo($title: String!) {
-    createTodo(title: $title) {
+    createTodo(input: { title: $title }) {
         __typename
         ... on CreateTodoSuccess {
-            id
-            title
-            isCompleted
+            todo {
+                id
+                title
+                isDone
+            }
         }
-        ... on InvalidTodoRejection {
-            reason
+        ... on InvalidTodoError {
+            message
         }
     }
 }

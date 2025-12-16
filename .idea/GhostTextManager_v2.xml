@@ -27,6 +27,18 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="Ah I see, the tag is used where the dependencies are instantiated and injected!&#10;&#10;Alright, let's refactor with Config + ConfigService &amp; KyselyConnection + KyselyConnectionService&#10;&#10;We'll keep the &quot;Service&quot; for Concrete Services and no suffixes for other things">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764621791584" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="Ah I see, we have to throw in the abstract class, we can't make it return a Result?">
           <value>
             <GhostTextMetaData>
@@ -34,6 +46,42 @@
               <option name="timestamps">
                 <list>
                   <option value="1764370080876" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Altough, I don't like writting GQL in TS files. My current approach have Resolvers, Payloads and Rejections as class and will use codegen to create GQL files through &quot;@&lt;file_name&gt;&#10;&#10;I also create manual GQL files and use the codegen to turn them into a SDK with &quot;@&lt;file_name&gt;&#10;&#10;Is it possible to keep doing that with Hono + Effect + Yoga? Maybe not as classes but something similar?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764420256288" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Altough, I don't like writting GQL in TS files. My current approach have Resolvers, Payloads and Rejections as class and will use codegen to create GQL files through &quot;@&lt;file_name&gt;&#10;&#10;Is it possible to keep doing that with Hono + Effect + Yoga? Maybe not as classes but something similar?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764420308744" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Are you familiar with Effect? https://effect.website/docs">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764418418391" />
                 </list>
               </option>
             </GhostTextMetaData>
@@ -65,6 +113,42 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="Do we really need to assign a const to the Context.GenericTag? If it will only be used by the &quot;Service&quot;, why put it in a const?&#10;&#10;I think Config alone would be good but Kysely would be weird. Maybe KyselyConnection would fit better as this is indeed what we're returning, right?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764621482064" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="For the following code:&#10;```&#10;&#10;Effect.runFork(runnable);&#10;&#10;```&#10;We have the error: TS2345: Argument of type 'Effect&lt;void, never, Kysely&lt;DB&gt; | { APP_PORT: number; DATABASE_HOST: string; DATABASE_PORT: number; DATABASE_NAME: string; DATABASE_USER: string; DATABASE_PASSWORD: string; NODE_ENV: Environments; }&gt;' is not assignable to parameter of type 'Effect&lt;void, never, never&gt;'.&#10;  Type 'Kysely&lt;DB&gt; | { APP_PORT: number; DATABASE_HOST: string; DATABASE_PORT: number; DATABASE_NAME: string; DATABASE_USER: string; DATABASE_PASSWORD: string; NODE_ENV: Environments; }' is not assignable to type 'never'.&#10;    Type 'Kysely&lt;DB&gt;' is not assignable to type 'never'.&#10;Please fix this. If needed, you can use the get_errors tool on this file.">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764623511765" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="For the following code:&#10;```&#10;&#10;export const AppLayer = Layer.mergeAll(&#10;    ConfigService,&#10;```&#10;We have the error: TS4023: Exported variable 'AppLayer' has or is using name 'Environments' from external module &quot;/Users/galdan.moulinneuf/Dev/Perso/nest-todos/src/services/config.service&quot; but cannot be named.&#10;Please fix this. If needed, you can use the get_errors tool on this file.">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764623116972" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="For the following code:&#10;```&#10;        }&#10;        return Result.ok(instance);&#10;    }&#10;```&#10;We have the error: TypeScript-Go: Type 'Ok&lt;T&gt;' is not assignable to type 'Result&lt;T, ZodError&lt;unknown&gt;&gt;'.&#10;  Type 'Result$1&lt;T, never&gt;' is not assignable to type 'Error&lt;ZodError&lt;unknown&gt;&gt;'.&#10;    Type 'T' is not assignable to type 'never'.&#10;      Type 'Entity' is not assignable to type 'never'.&#10;Please fix this. If needed, you can use the get_errors tool on this file.">
           <value>
             <GhostTextMetaData>
@@ -72,6 +156,18 @@
               <option name="timestamps">
                 <list>
                   <option value="1760867264803" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="I see a new concept which seems to make sense in the context of Effect: the services. What are they?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764619890231" />
                 </list>
               </option>
             </GhostTextMetaData>
@@ -89,6 +185,42 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="I see. Before, I have a port which is very similar to the &quot;Interface&quot; and an adapter which is the implementation of the port. I also had to define a &quot;token&quot; for NestJS to know how to identify the dependency. The token was also in the port.&#10;&#10;Now, you seem to have grouped the three concepts in the same file. I really liked the idea to define the ports in the application layer and just make the infrastructure depend on it (inversion of dependency). Also, if I were to create another adapter, let's say, an incremental integer id generator, I'd have to also add it to the file, that's a bit weird I think.&#10;&#10;Is there a reason you chose otherwise?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764620166980" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="I see. I don't really care about the incremental id generator but yeah, please refactor for the uuid">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764620251682" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="I still see this naming for what seems to be &quot;simpler&quot; services like ConfigService or KyselyService? They are pure dependencies right? What's the goal of having a ConfigService and a ConfigServiceLive?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764621159857" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="I understand. So the fact that my TodoApplicationModule is importing the TodoInfrastructureModule is not a breach? This is understandable since it's a technical detail (NestJS), right? As long as the UseCase or Entities do not import infrastructure files directly?">
           <value>
             <GhostTextMetaData>
@@ -96,6 +228,18 @@
               <option name="timestamps">
                 <list>
                   <option value="1761903793588" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="I would also like to ditch the object oriented programming when possible with an IIFE like here:&#10;&#10;```typescript&#10;async (request: FastifyRequest&lt;{ Params: ServeCategoryImageParams }&gt;, reply: FastifyReply) =&gt; {&#10;      const program = Effect.gen(function* () {&#10;        const { organizationId, sha1Hash } = request.params;&#10;&#10;        const assetStorageService = yield* AssetStorageService;&#10;        const imageData = yield* assetStorageService.getCategoryImage(organizationId, sha1Hash);&#10;&#10;        if (!imageData) {&#10;          return yield* Effect.fail(&#10;            new DataNotFoundError({&#10;              message: &quot;Image not found&quot;,&#10;              entityType: &quot;AssetImage&quot;,&#10;              id: `${organizationId}:${sha1Hash}`,&#10;            }),&#10;          );&#10;        }&#10;&#10;        reply.type(imageData.contentType);&#10;        reply.header(&quot;Cache-Control&quot;, &quot;public, max-age=31536000&quot;);&#10;        reply.header(&quot;Content-Length&quot;, imageData.buffer.length);&#10;&#10;        return imageData.buffer;&#10;      });&#10;&#10;      const result = await Effect.runPromise(&#10;        program.pipe(&#10;          Effect.catchTags({&#10;            DataNotFoundError: error =&gt;&#10;              Effect.succeed(reply.status(404).send({ error: error.message })),&#10;            StorageError: error =&gt; Effect.succeed(reply.status(500).send({ error: error.message })),&#10;          }),&#10;          Effect.provide(AssetStorageServiceLive),&#10;        ),&#10;      );&#10;&#10;      return result;&#10;    },&#10;```">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764419619719" />
                 </list>
               </option>
             </GhostTextMetaData>
@@ -114,6 +258,31 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="I would like to get rid of NestJS. I would like to replace the dependency injection by the Context module of Effect.&#10;&#10;I would also like to try Hono to replace express that NestJS use in this app: https://hono.dev/">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="2.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764418758929" />
+                  <option value="1764418739311" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="I would like to keep GQL and use Yoga. The idea is to discover GQL by mimicking everything REST can do and can't do, like selecting which fields to retrieve and field resolvers.">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764419998248" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="I would like your help on my abstract class Entity. The goal is to be able to represent an entity by extending it. I want an entity to be automatically validated when instantiated without specifying it in the implementation class (TodoEntity here for example). I tried something as you can see but it seems fishy. Can you propose another solution?">
           <value>
             <GhostTextMetaData>
@@ -121,6 +290,42 @@
               <option name="timestamps">
                 <list>
                   <option value="1764369643447" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="I'll have some questions about your refactoring. Don't change a thing until I say so please. I just need to understand everything you did as I'm trying to learn Effect and some functional programming patterns. Okay?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764619766767" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="I'm not familiar with graphql-yogo, what is it?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764419785937" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="I'm not sure I see the difference between 1 and 2. 3 is not an option I want. I need to be able to test my app from HTTP calls (REST or GQL)">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764624849040" />
                 </list>
               </option>
             </GhostTextMetaData>
@@ -150,6 +355,30 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="Layers seems to be similar to Modules in NestJS.&#10;&#10;Would it make sense to re-create the layers I had? AppLayer, InfrastructureLayer, PersistenceLayer, IdGeneratorLayer, ApplicationLayer, DomainLayer, etc.?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764623260489" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Okay great!&#10;&#10;Another question about the &quot;adapters&quot; you made. Why the &quot;Live&quot; part? And why still calling it &quot;Service&quot;? Won't KyselyTodoRepository be enough?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764620662684" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="Taking this LinkedIn post (in French), is it true that Infrastructure should depends on Domain and not the other way around?&#10;&#10;Is my app's infra depending on domain or the other way around? If yes, how can I fix this?">
           <value>
             <GhostTextMetaData>
@@ -174,6 +403,18 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="That'd be great yes! I don't really want to follow the Live and Service convention">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764620754013" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="The current approach is not working. I'll try to explain what I want and you can tell me if it's possible. If yes, you'll do it.&#10;&#10;I want an abstract class Entity that will have some properties common to every class inhereting this class (childs).&#10;&#10;I want their constructor to be private (or protected), I should not be able to instantiate an Entity using `new`, only static factory functions.&#10;&#10;I want each child to define its own zod schema.&#10;&#10;I want the Entity class to have a private method `validate` that will be called every time a new instance is created (so maybe in the constructor ?) but the child should not be really aware of it, I should not have to think about calling `validate` in each child, only to define the Zod schema that will be used to validate.&#10;&#10;Altough, each factory method will need to return a Result since the validation can fail.">
           <value>
             <GhostTextMetaData>
@@ -181,6 +422,42 @@
               <option name="timestamps">
                 <list>
                   <option value="1760776688658" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="The issue is not solved">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764623709882" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="There are still some files using dependencies you removed during the migration, especially the tests. Could you fix the tests please?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764624353533" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="We'll go back to the test later.&#10;&#10;I wonder, why is there a schema.ts and a schema-builder.ts very similar to my SDLBuilder.ts?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764626650872" />
                 </list>
               </option>
             </GhostTextMetaData>
@@ -205,6 +482,50 @@
               <option name="timestamps">
                 <list>
                   <option value="1764372397000" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="With the rules set in AGENTS.md,  can you please make the refactor of the whole repository?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="9.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764576694617" />
+                  <option value="1764574065882" />
+                  <option value="1764525917968" />
+                  <option value="1764490971991" />
+                  <option value="1764490620943" />
+                  <option value="1764421224472" />
+                  <option value="1764421198302" />
+                  <option value="1764420979232" />
+                  <option value="1764420623626" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Yes refactor please. And wouldn't it make sen to have a file exporting the layer un each folder?">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764623354003" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Yes, clean it up please">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1764626720721" />
                 </list>
               </option>
             </GhostTextMetaData>

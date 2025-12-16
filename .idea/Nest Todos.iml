@@ -12,6 +12,7 @@
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/tests/todo/graphql/sdk" />
     </content>
+    <content url="file://$MODULE_DIR$/.idea/queries" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

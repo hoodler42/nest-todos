@@ -1,6 +1,9 @@
-export class InvalidTodoError extends Error {
-    constructor(message: string) {
-        super(message);
-        this.name = "InvalidTodoError";
-    }
+import { Data } from "effect";
+
+export class InvalidTodoError extends Data.TaggedError("InvalidTodoError")<{
+  readonly message: string;
+}> {}
+
+export function isInvalidTodoError(error: unknown): error is InvalidTodoError {
+  return error instanceof InvalidTodoError;
 }

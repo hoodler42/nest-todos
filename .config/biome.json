@@ -1,0 +1,74 @@
+{
+  "$schema": "../node_modules/@biomejs/biome/configuration_schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+  "files": {
+    "includes": ["**", "!**/*.sdk.ts", "!**/package.json", "!**/*.models.d.ts"]
+  },
+  "formatter": {
+    "attributePosition": "auto",
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 100
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "asNeeded",
+      "attributePosition": "auto",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "quoteStyle": "double",
+      "semicolons": "always",
+      "trailingCommas": "all"
+    },
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "complexity": {
+        "noVoid": "off",
+        "useArrowFunction": "off"
+      },
+      "correctness": {
+        "noNodejsModules": "off",
+        "noUnusedVariables": "off",
+        "useHookAtTopLevel": "off"
+      },
+      "style": {
+        "noDefaultExport": "off",
+        "noParameterProperties": "off",
+        "useImportType": "on",
+        "useNamingConvention": {
+          "level": "warn",
+          "options": {
+            "strictCase": false
+          }
+        }
+      },
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "noConsole": {
+          "level": "warn",
+          "options": {
+            "allow": ["error", "info"]
+          }
+        },
+        "noEmptyBlockStatements": "off",
+        "useAwait": "off"
+      }
+    }
+  }
+}

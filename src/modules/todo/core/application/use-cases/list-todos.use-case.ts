@@ -1,12 +1,16 @@
-import { Inject } from "@nestjs/common";
-
+import { Effect } from "effect";
 import type { TodoEntity } from "../../domain/entities/todo.entity.js";
-import { TodoRepository, TODO_REPOSITORY_TOKEN } from "../ports/repositories/todo.repository.js";
+import type { InvalidTodoError } from "../../domain/errors/invalid-todo.error.js";
+import { TodoRepository } from "../ports/todo.repository.js";
 
-export class ListTodosUseCase {
-    constructor(@Inject(TODO_REPOSITORY_TOKEN) private readonly todoRepository: TodoRepository) {}
+export const listTodos = () =>
+    Effect.gen(function* () {
+        const todoRepository = yield* TodoRepository;
+        return yield* todoRepository.findAll();
+    });
 
-    async execute(): Promise<TodoEntity[]> {
-        return this.todoRepository.findAll();
-    }
-}
+export type ListTodosEffect = Effect.Effect<
+    TodoEntity[],
+    Error | InvalidTodoError,
+    typeof TodoRepository
+>;
